@@ -1,0 +1,18 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+  h2:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:tcp://localhost/~/Fit4You
+    username: sa
+    password:
+
+  jpa:
+    show_sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
