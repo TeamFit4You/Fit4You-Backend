@@ -2,9 +2,8 @@
 
 POST http://localhost:8080/members/sign-up
 Content-Type: application/json
-Authorization:
 
 {
   "email": "test@email.com",
-  "password": "testPassword"
+  "password": "testPassword123"
 }
