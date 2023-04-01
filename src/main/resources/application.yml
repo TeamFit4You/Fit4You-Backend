@@ -2,3 +2,9 @@ spring:
   profiles:
     default: local
 
+  config:
+    import:
+      - optional:classpath:/secret-config.yml #실제 배포환경에서 사용할 키
+
+app-config: #테스트용 키
+  jwt-key: "9esMvnzaD0/Ph+0u9j6WdO+vLCbkI52g8kP09eksodQ="

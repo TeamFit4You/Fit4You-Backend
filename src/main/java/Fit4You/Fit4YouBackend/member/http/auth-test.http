@@ -1,0 +1,11 @@
+### 인증 요청
+
+GET http://localhost:8080/members/auth/test
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjgwMzM2MDE0LCJleHAiOjE2ODAzMzk2MTR9.-g6VH-DntaJASnLXnwXyT81Nd_OJ0hjkW6sFVYar_u8
+
+{
+  "email": "test@email.com",
+  "password": "testPassword"
+}
+
