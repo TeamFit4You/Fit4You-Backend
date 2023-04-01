@@ -8,7 +8,6 @@ import java.util.Base64;
 
 @Getter
 @ConfigurationProperties(prefix = "app-config")
-//@Configuration
 public class AppConfig {
     private byte[] jwtKey;
     public AppConfig(String jwtKey) {

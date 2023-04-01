@@ -1,7 +1,6 @@
 package Fit4You.Fit4YouBackend.config.interceptors;
 
 import Fit4You.Fit4YouBackend.config.AppConfig;
-import Fit4You.Fit4YouBackend.exception.ExpirationToken;
 import Fit4You.Fit4YouBackend.exception.Unauthorized;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -11,17 +10,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.MethodParameter;
-import org.springframework.web.bind.support.WebDataBinderFactory;
-import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Base64;
-import java.util.Date;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -57,7 +48,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         } catch (JwtException e) {
             //don't trust the JWT!
             log.error("error",e);
-            throw new Unauthorized();
+            throw new Unauthorized("유효하지 않은 토큰");
         }
 
 

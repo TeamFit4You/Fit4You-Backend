@@ -9,7 +9,7 @@ build/
 secret-config.yml
 
 ### STS ###
-.apt_generated
+.apt_generatedㅁ
 .classpath
 .factorypath
 .project
