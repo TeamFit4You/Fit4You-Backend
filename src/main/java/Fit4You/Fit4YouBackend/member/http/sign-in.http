@@ -1,0 +1,10 @@
+### 로그인 요청
+
+POST http://localhost:8080/members/sign-in
+Content-Type: application/json
+
+{
+  "email": "test@email.com",
+  "password": "testPassword123"
+}
+
