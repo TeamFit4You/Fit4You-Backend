@@ -36,7 +36,7 @@ public class ProgramService implements ProgramUseCase {
         Member member = loadMemberPort.loadMember(programCreate.getEmail());
         Program program = Program.builder()
                 .member(member)
-                .setNum(programCreate.getPnum())
+                .numOfPgm(programCreate.getNumOfPgm())
                 .build();
 
         Long programId = programPort.create(program);
@@ -44,10 +44,10 @@ public class ProgramService implements ProgramUseCase {
         List<Exercise> exercises = exercisePort.getAll();
 
         //TODO setNum이 exercise의 총 개수보다 커서는 안될듯; setNum 제한조건(constraint) 필요
-        for (int i = 0; i < programCreate.getPnum(); i++) {
+        for (int i = 0; i < programCreate.getNumOfPgm(); i++) {
             Exercise exercise = exercises.get(i);//TODO 우선순위 기반으로 바꿀 것
             Workout workout = Workout.builder()
-                    .setNum(programCreate.getWnum())
+                    .numOfSet(programCreate.getNumOfSet())
                     .program(program)
                     .exercise(exercise)
                     .build();

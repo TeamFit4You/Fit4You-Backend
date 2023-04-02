@@ -23,7 +23,7 @@ public class Workout {
     @JoinColumn(name = "exercise_id")
     private Exercise exercise;
 
-    private Integer setNum;
+    private Integer numOfSet;
 
     private Float accuracy;
 
@@ -31,10 +31,10 @@ public class Workout {
     private String feedback;
 
     @Builder
-    public Workout(Program program, Exercise exercise, Integer setNum, Float accuracy, String feedback) {
+    public Workout(Program program, Exercise exercise, Integer numOfSet, Float accuracy, String feedback) {
         this.program = program;
         this.exercise = exercise;
-        this.setNum = setNum;
+        this.numOfSet = numOfSet;
         this.accuracy = accuracy;
         this.feedback = feedback;
     }

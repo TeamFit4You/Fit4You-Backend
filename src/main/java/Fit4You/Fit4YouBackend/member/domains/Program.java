@@ -5,7 +5,6 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.util.Lazy;
 
 @Entity
 @Getter
@@ -24,12 +23,12 @@ public class Program {
     @Lob
     private String result;
 
-    private Integer setNum;
+    private Integer numOfPgm;
 
     @Builder
-    public Program(Member member, String result, Integer setNum) {
+    public Program(Member member, String result, Integer numOfPgm) {
         this.member = member;
         this.result = result;
-        this.setNum = setNum;
+        this.numOfPgm = numOfPgm;
     }
 }

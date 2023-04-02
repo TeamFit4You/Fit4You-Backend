@@ -14,14 +14,13 @@ public class ProgramCreate {
     private String email;
 
     @NotNull
-    private Integer pnum;
+    private Integer numOfPgm;
     @NotNull
-    private Integer wnum;
-
+    private Integer numOfSet
     @Builder
-    public ProgramCreate(String email, Integer pnum, Integer wnum) {
+    public ProgramCreate(String email, Integer numOfPgm, Integer numOfSet) {
         this.email = email;
-        this.pnum = pnum;
-        this.wnum = wnum;
+        this.numOfPgm = numOfPgm;
+        this.numOfSet = numOfSet;
     }
 }

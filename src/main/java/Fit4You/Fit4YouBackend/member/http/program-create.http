@@ -7,6 +7,6 @@ Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjgwNDQ3NDg1LCJleHAi
 
 {
   "email": "test@email.com",
-  "pnum" : "3",
-  "wnum" : "3"
+  "numOfPgm" : "3",
+  "numOfSet" : "3"
 }
