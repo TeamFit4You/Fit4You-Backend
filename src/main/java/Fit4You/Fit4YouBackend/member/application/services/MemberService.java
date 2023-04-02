@@ -10,11 +10,12 @@ import Fit4You.Fit4YouBackend.member.domains.Member;
 import Fit4You.Fit4YouBackend.member.dto.request.SignInRequest;
 import Fit4You.Fit4YouBackend.member.dto.request.SignUpRequest;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MemberService implements MemberUseCase {
     private final RegisterMemberPort registerMemberPort;
     private final LoadMemberPort loadMemberPort;
