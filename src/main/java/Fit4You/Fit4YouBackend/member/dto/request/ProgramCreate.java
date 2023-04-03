@@ -16,7 +16,7 @@ public class ProgramCreate {
     @NotNull
     private Integer numOfPgm;
     @NotNull
-    private Integer numOfSet
+    private Integer numOfSet;
     @Builder
     public ProgramCreate(String email, Integer numOfPgm, Integer numOfSet) {
         this.email = email;
