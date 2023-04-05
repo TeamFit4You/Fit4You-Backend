@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Program {
+public class Training {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "program_id")
+    @Column(name = "training_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -26,7 +26,7 @@ public class Program {
     private Integer numOfPgm;
 
     @Builder
-    public Program(Member member, String result, Integer numOfPgm) {
+    public Training(Member member, String result, Integer numOfPgm) {
         this.member = member;
         this.result = result;
         this.numOfPgm = numOfPgm;

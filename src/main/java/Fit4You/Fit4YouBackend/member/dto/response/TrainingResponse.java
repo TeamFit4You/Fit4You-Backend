@@ -6,12 +6,12 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class ProgramResponse {
+public class TrainingResponse {
 
     private Long programId;
 
     @Builder
-    public ProgramResponse(Long programId) {
+    public TrainingResponse(Long programId) {
         this.programId = programId;
     }
 }

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class ProgramCreate {
+public class TrainingCreate {
 
     @NotBlank
     private String email;
@@ -18,7 +18,7 @@ public class ProgramCreate {
     @NotNull
     private Integer numOfSet;
     @Builder
-    public ProgramCreate(String email, Integer numOfPgm, Integer numOfSet) {
+    public TrainingCreate(String email, Integer numOfPgm, Integer numOfSet) {
         this.email = email;
         this.numOfPgm = numOfPgm;
         this.numOfSet = numOfSet;

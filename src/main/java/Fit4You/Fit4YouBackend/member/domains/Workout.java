@@ -16,8 +16,8 @@ public class Workout {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "program_id")
-    private Program program;
+    @JoinColumn(name = "training_id")
+    private Training training;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "exercise_id")
@@ -31,8 +31,8 @@ public class Workout {
     private String feedback;
 
     @Builder
-    public Workout(Program program, Exercise exercise, Integer numOfSet, Float accuracy, String feedback) {
-        this.program = program;
+    public Workout(Training training, Exercise exercise, Integer numOfSet, Float accuracy, String feedback) {
+        this.training = training;
         this.exercise = exercise;
         this.numOfSet = numOfSet;
         this.accuracy = accuracy;
