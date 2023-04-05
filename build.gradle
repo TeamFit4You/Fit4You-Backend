@@ -33,6 +33,9 @@ dependencies {
 	//@ConfigurationProperties을 이용한 메타데이터 생성을 위한 의존성
 	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
+	//Websocket 의존성
+	implementation 'org.springframework.boot:spring-boot-starter-websocket:3.0.5'
+
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'

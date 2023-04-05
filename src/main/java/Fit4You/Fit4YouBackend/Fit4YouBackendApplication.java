@@ -1,7 +1,6 @@
 package Fit4You.Fit4YouBackend;
 
 import Fit4You.Fit4YouBackend.config.AppConfig;
-import Fit4You.Fit4YouBackend.socket.EmbeddedSocketServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -11,7 +10,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 public class Fit4YouBackendApplication {
 
 	public static void main(String[] args) {
-		new Thread(new EmbeddedSocketServer()).start();
 		SpringApplication.run(Fit4YouBackendApplication.class, args);
 	}
 
