@@ -2,8 +2,8 @@ package Fit4You.Fit4YouBackend.websocket;
 
 import Fit4You.Fit4YouBackend.config.AppConfig;
 import Fit4You.Fit4YouBackend.exception.Unauthorized;
-import Fit4You.Fit4YouBackend.member.application.ports.outs.training.TrainingPort;
-import Fit4You.Fit4YouBackend.member.application.ports.outs.training.WorkoutPort;
+import Fit4You.Fit4YouBackend.api.application.ports.outs.training.TrainingPort;
+import Fit4You.Fit4YouBackend.api.application.ports.outs.training.WorkoutPort;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -101,7 +101,7 @@ public class MySocketHandler extends BinaryWebSocketHandler {
 
     //소켓 통신 에러
     public void handleTransportError(WebSocketSession session, Throwable exception, String message) throws Exception {
-        log.error(">>>SOCKET ERRORHANDLER : {}", exception.getStackTrace());
+        log.error(">>>SOCKET ERRORHANDLER : {}", exception.getMessage());
         SocketResponse response = SocketResponse.builder()
                 .type(SocketDataType.ERROR)
                 .data(message)
