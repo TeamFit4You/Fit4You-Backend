@@ -23,12 +23,12 @@ public class Training {
     @Lob
     private String result;
 
-    private Integer numOfPgm;
+    private Integer numOfWork;
 
     @Builder
-    public Training(Member member, String result, Integer numOfPgm) {
+    public Training(Member member, String result, Integer numOfWork) {
         this.member = member;
         this.result = result;
-        this.numOfPgm = numOfPgm;
+        this.numOfWork = numOfWork;
     }
 }

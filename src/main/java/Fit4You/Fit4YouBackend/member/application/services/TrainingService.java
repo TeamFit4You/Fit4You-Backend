@@ -2,9 +2,9 @@ package Fit4You.Fit4YouBackend.member.application.services;
 
 import Fit4You.Fit4YouBackend.member.application.ports.in.TrainingUseCase;
 import Fit4You.Fit4YouBackend.member.application.ports.out.LoadMemberPort;
-import Fit4You.Fit4YouBackend.member.application.ports.out.program.ExercisePort;
-import Fit4You.Fit4YouBackend.member.application.ports.out.program.TrainingPort;
-import Fit4You.Fit4YouBackend.member.application.ports.out.program.WorkoutPort;
+import Fit4You.Fit4YouBackend.member.application.ports.out.training.ExercisePort;
+import Fit4You.Fit4YouBackend.member.application.ports.out.training.TrainingPort;
+import Fit4You.Fit4YouBackend.member.application.ports.out.training.WorkoutPort;
 import Fit4You.Fit4YouBackend.member.domains.Exercise;
 import Fit4You.Fit4YouBackend.member.domains.Member;
 import Fit4You.Fit4YouBackend.member.domains.Training;
@@ -36,15 +36,15 @@ public class TrainingService implements TrainingUseCase {
         Member member = loadMemberPort.loadMember(trainingCreate.getEmail());
         Training training = Training.builder()
                 .member(member)
-                .numOfPgm(trainingCreate.getNumOfPgm())
+                .numOfWork(trainingCreate.getNumOfWork())
                 .build();
 
-        Long programId = trainingPort.create(training);
+        Long trainingId = trainingPort.create(training);
 
         List<Exercise> exercises = exercisePort.getAll();
 
         //TODO setNum이 exercise의 총 개수보다 커서는 안될듯; setNum 제한조건(constraint) 필요
-        for (int i = 0; i < trainingCreate.getNumOfPgm(); i++) {
+        for (int i = 0; i < trainingCreate.getNumOfWork(); i++) {
             Exercise exercise = exercises.get(i);//TODO 우선순위 기반으로 바꿀 것
             Workout workout = Workout.builder()
                     .numOfSet(trainingCreate.getNumOfSet())
@@ -55,7 +55,7 @@ public class TrainingService implements TrainingUseCase {
         }
 
         return TrainingResponse.builder()
-                .programId(programId)
+                .trainingId(trainingId)
                 .build();
     }
 

@@ -12,15 +12,14 @@ public class TrainingCreate {
 
     @NotBlank
     private String email;
-
     @NotNull
-    private Integer numOfPgm;
+    private Integer numOfWork;
     @NotNull
     private Integer numOfSet;
     @Builder
-    public TrainingCreate(String email, Integer numOfPgm, Integer numOfSet) {
+    public TrainingCreate(String email, Integer numOfWork, Integer numOfSet) {
         this.email = email;
-        this.numOfPgm = numOfPgm;
+        this.numOfWork = numOfWork;
         this.numOfSet = numOfSet;
     }
 }

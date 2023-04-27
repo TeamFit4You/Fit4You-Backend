@@ -2,36 +2,57 @@ package Fit4You.Fit4YouBackend.websocket;
 
 import Fit4You.Fit4YouBackend.config.AppConfig;
 import Fit4You.Fit4YouBackend.config.interceptors.Auth;
-import Fit4You.Fit4YouBackend.member.application.ports.out.program.TrainingPort;
-import Fit4You.Fit4YouBackend.member.application.ports.out.program.WorkoutPort;
+import Fit4You.Fit4YouBackend.member.application.ports.out.training.TrainingPort;
+import Fit4You.Fit4YouBackend.member.application.ports.out.training.WorkoutPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.WebSocketHandler;
-import org.springframework.web.socket.config.annotation.EnableWebSocket;
-import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
-import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+import org.springframework.web.socket.config.annotation.*;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
 @Configuration
-@EnableWebSocket
+@EnableWebSocketMessageBroker
 @RequiredArgsConstructor
-public class WebsocketConfig implements WebSocketConfigurer {
-
+public class WebsocketConfig implements WebSocketMessageBrokerConfigurer {
     private final TrainingPort trainingPort;
     private final WorkoutPort workoutPort;
     private final AppConfig appConfig;
+
     @Override
-    @Auth
-    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(signalingSocketHandler(), "/socket")
-                .setAllowedOrigins("*")
-                .addInterceptors(new HttpSessionHandshakeInterceptor());
-
+    public void configureMessageBroker(MessageBrokerRegistry registry) {
+        registry.enableSimpleBroker("/sub");
+        registry.setApplicationDestinationPrefixes("/pub");
     }
 
-    @Bean
-    public WebSocketHandler signalingSocketHandler() {
-        return new MySocketHandler(trainingPort,workoutPort, appConfig);
+    @Override
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/ws")
+                .setAllowedOrigins("*");
     }
+
+    @Override
+    public void configureWebSocketTransport(WebSocketTransportRegistration registry) {
+        registry.setMessageSizeLimit(160 * 64 * 1024); // default : 64 * 1024
+        registry.setSendTimeLimit(100 * 10000); // default : 10 * 10000
+        registry.setSendBufferSizeLimit(3* 512 * 1024); // default : 512 * 1024
+    }
+
+//    @Override
+//    @Auth
+//    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+//        registry.addHandler(signalingSocketHandler(), "/socket")
+//                .setAllowedOrigins("*")
+//                .addInterceptors(new HttpSessionHandshakeInterceptor());
+//
+//    }
+//
+//    @Bean
+//    public WebSocketHandler signalingSocketHandler() {
+//        return new MySocketHandler(trainingPort,workoutPort, appConfig);
+//    }
+
+
+
 }

@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TrainingResponse {
 
-    private Long programId;
+    private Long trainingId;
 
     @Builder
-    public TrainingResponse(Long programId) {
-        this.programId = programId;
+    public TrainingResponse(Long trainingId) {
+        this.trainingId = trainingId;
     }
 }
