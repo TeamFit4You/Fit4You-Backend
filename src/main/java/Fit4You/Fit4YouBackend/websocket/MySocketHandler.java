@@ -2,8 +2,8 @@ package Fit4You.Fit4YouBackend.websocket;
 
 import Fit4You.Fit4YouBackend.config.AppConfig;
 import Fit4You.Fit4YouBackend.exception.Unauthorized;
-import Fit4You.Fit4YouBackend.member.application.ports.out.training.TrainingPort;
-import Fit4You.Fit4YouBackend.member.application.ports.out.training.WorkoutPort;
+import Fit4You.Fit4YouBackend.member.application.ports.outs.training.TrainingPort;
+import Fit4You.Fit4YouBackend.member.application.ports.outs.training.WorkoutPort;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

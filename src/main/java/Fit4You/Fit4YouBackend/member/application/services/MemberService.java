@@ -1,15 +1,13 @@
 package Fit4You.Fit4YouBackend.member.application.services;
 
 import Fit4You.Fit4YouBackend.exception.InvalidSignInInfo;
-import Fit4You.Fit4YouBackend.exception.Unauthorized;
 import Fit4You.Fit4YouBackend.member.application.ports.in.MemberUseCase;
-import Fit4You.Fit4YouBackend.member.application.ports.out.LoadMemberPort;
-import Fit4You.Fit4YouBackend.member.application.ports.out.RegisterMemberPort;
+import Fit4You.Fit4YouBackend.member.application.ports.outs.LoadMemberPort;
+import Fit4You.Fit4YouBackend.member.application.ports.outs.RegisterMemberPort;
 import Fit4You.Fit4YouBackend.member.crypto.PasswordEncoder;
 import Fit4You.Fit4YouBackend.member.domains.Member;
 import Fit4You.Fit4YouBackend.member.dto.request.SignInRequest;
 import Fit4You.Fit4YouBackend.member.dto.request.SignUpRequest;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

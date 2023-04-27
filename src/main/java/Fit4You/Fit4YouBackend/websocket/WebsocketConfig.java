@@ -1,16 +1,12 @@
 package Fit4You.Fit4YouBackend.websocket;
 
 import Fit4You.Fit4YouBackend.config.AppConfig;
-import Fit4You.Fit4YouBackend.config.interceptors.Auth;
-import Fit4You.Fit4YouBackend.member.application.ports.out.training.TrainingPort;
-import Fit4You.Fit4YouBackend.member.application.ports.out.training.WorkoutPort;
+import Fit4You.Fit4YouBackend.member.application.ports.outs.training.TrainingPort;
+import Fit4You.Fit4YouBackend.member.application.ports.outs.training.WorkoutPort;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
-import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.config.annotation.*;
-import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
 @Configuration
 @EnableWebSocketMessageBroker

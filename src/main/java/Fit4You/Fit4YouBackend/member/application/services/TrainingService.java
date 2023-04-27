@@ -1,10 +1,10 @@
 package Fit4You.Fit4YouBackend.member.application.services;
 
 import Fit4You.Fit4YouBackend.member.application.ports.in.TrainingUseCase;
-import Fit4You.Fit4YouBackend.member.application.ports.out.LoadMemberPort;
-import Fit4You.Fit4YouBackend.member.application.ports.out.training.ExercisePort;
-import Fit4You.Fit4YouBackend.member.application.ports.out.training.TrainingPort;
-import Fit4You.Fit4YouBackend.member.application.ports.out.training.WorkoutPort;
+import Fit4You.Fit4YouBackend.member.application.ports.outs.LoadMemberPort;
+import Fit4You.Fit4YouBackend.member.application.ports.outs.training.ExercisePort;
+import Fit4You.Fit4YouBackend.member.application.ports.outs.training.TrainingPort;
+import Fit4You.Fit4YouBackend.member.application.ports.outs.training.WorkoutPort;
 import Fit4You.Fit4YouBackend.member.domains.Exercise;
 import Fit4You.Fit4YouBackend.member.domains.Member;
 import Fit4You.Fit4YouBackend.member.domains.Training;
