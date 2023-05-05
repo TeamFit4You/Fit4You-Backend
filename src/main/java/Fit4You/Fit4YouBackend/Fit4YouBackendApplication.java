@@ -11,7 +11,6 @@ public class Fit4YouBackendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Fit4YouBackendApplication.class, args);
-
 	}
 
 }

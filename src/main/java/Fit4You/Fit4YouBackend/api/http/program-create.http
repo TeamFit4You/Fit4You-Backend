@@ -1,0 +1,12 @@
+### 프로그램 생성 요청
+
+
+POST http://localhost:8080/programs/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjgwNDQ3NDg1LCJleHAiOjE2ODA0NTEwODV9.mNDd2WYiR95yw5XCx3GU1770UpCVMvA0EOuPYSXWxXQ
+
+{
+  "email": "test@email.com",
+  "numOfPgm" : "3",
+  "numOfSet" : "3"
+}
