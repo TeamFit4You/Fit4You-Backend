@@ -11,6 +11,7 @@ import Fit4You.Fit4YouBackend.api.domains.member.MedicalHist;
 import Fit4You.Fit4YouBackend.api.domains.member.Member;
 import Fit4You.Fit4YouBackend.api.domains.training.Training;
 import Fit4You.Fit4YouBackend.api.domains.training.Workout;
+import Fit4You.Fit4YouBackend.api.dto.request.RecommendCreate;
 import Fit4You.Fit4YouBackend.api.dto.request.TrainingCreate;
 import Fit4You.Fit4YouBackend.api.dto.response.TrainingResponse;
 import lombok.RequiredArgsConstructor;
@@ -29,42 +30,66 @@ public class TrainingService implements TrainingUseCase {
     private final ExercisePort exercisePort;
     private final LoadMemberPort loadMemberPort;
 
+    private final Integer workoutEa = 3;
 
-    /**
-     * result 는 나중에 업데이트..?
-     */
     @Override
-    @Transactional
     public TrainingResponse createTraining(TrainingCreate trainingCreate) {
         Member member = loadMemberPort.loadMember(trainingCreate.getEmail());
+        List<Exercise> exercises = getExercisesById(trainingCreate.getSelects());
 
         Training training = Training.builder()
                 .member(member)
-                .workoutEa(trainingCreate.getWorkoutEa())
+                .workoutEa(workoutEa)
                 .build();
         Long trainingId = trainingPort.create(training);
 
-        List<Exercise> exercises = getExercisesByPriority(member);;//TODO ENUM or 싱글톤으로 관리
-        //TODO workoutEa이 exercise의 총 개수보다 커서는 안될듯; workoutEa 제한조건(constraint) 필요
-        for (int i = 0; i < trainingCreate.getWorkoutEa(); i++) {
-            Exercise exercise = exercises.get(i);
-            Workout workout = Workout.builder()
-                    .training(training)
-                    .exercise(exercise)
-                    .build();
-            workoutPort.create(workout);//TODO 리스트로 모았다가 한번에 쿼리로 전환
-        }
+        createWorkout(exercises, training);
 
         return TrainingResponse.builder()
                 .trainingId(trainingId)
                 .build();
     }
 
+    @Override
+    @Transactional
+    public TrainingResponse createRecommend(RecommendCreate recommendCreate) {
+        Member member = loadMemberPort.loadMember(recommendCreate.getEmail());
+
+        Training training = Training.builder()
+                .member(member)
+                .workoutEa(workoutEa)
+                .build();
+        Long trainingId = trainingPort.create(training);
+
+        List<Exercise> exercises = getExercisesByPriority(member);;//TODO ENUM or 싱글톤으로 관리
+        createWorkout(exercises, training);
+
+        return TrainingResponse.builder()
+                .trainingId(trainingId)
+                .build();
+    }
+
+    public List<Exercise> getExercisesById(List<Long> selects) {
+        //TODO exercises 및 mapper싱글톤으로 관리
+        List<Exercise> exercises = exercisePort.getAll();
+        HashMap<Long, Exercise> mapper = new HashMap<>();
+        for (Exercise exercise : exercises) {
+            mapper.put(exercise.getId(), exercise);
+        }
+
+        //
+        List<Exercise> results = new ArrayList<>();
+        for (Long select : selects) {
+            results.add(mapper.get(select));
+        }
+
+        return results;
+    }
+
     public List<Exercise> getExercisesByPriority(Member member) {
 
         // 현재 상태에 따라 가중치 up
-        List<Condition> conditions = member.getConditions();
-        Condition condition = conditions.get(0); //TODO 상태선택 방법 개선
+        Condition condition = member.getCondition();
 
         Map<String, Float> weightMap = new HashMap<>();
         weightMap.put("neck",condition.getNeck());
@@ -105,7 +130,16 @@ public class TrainingService implements TrainingUseCase {
 
         return exercises;
     }
-
+    private void createWorkout(List<Exercise> exercises, Training training) {
+        for (int i = 0; i < workoutEa; i++) {
+            Exercise exercise = exercises.get(i);
+            Workout workout = Workout.builder()
+                    .training(training)
+                    .exercise(exercise)
+                    .build();
+            workoutPort.create(workout);//TODO 리스트로 모았다가 한번에 쿼리로 전환
+        }
+    }
     private static Comparator<Exercise> getComparator(Map<String, Float> priority) {
         Comparator<Exercise> comparator = new Comparator<>() {
             @Override
