@@ -45,7 +45,6 @@ public class TrainingService implements TrainingUseCase {
         Long trainingId = trainingPort.create(training);
 
         List<Exercise> exercises = getExercisesByPriority(member);;//TODO ENUM or 싱글톤으로 관리
-
         //TODO workoutEa이 exercise의 총 개수보다 커서는 안될듯; workoutEa 제한조건(constraint) 필요
         for (int i = 0; i < trainingCreate.getWorkoutEa(); i++) {
             Exercise exercise = exercises.get(i);
@@ -61,7 +60,7 @@ public class TrainingService implements TrainingUseCase {
                 .build();
     }
 
-    private List<Exercise> getExercisesByPriority(Member member) {
+    public List<Exercise> getExercisesByPriority(Member member) {
 
         // 현재 상태에 따라 가중치 up
         List<Condition> conditions = member.getConditions();
