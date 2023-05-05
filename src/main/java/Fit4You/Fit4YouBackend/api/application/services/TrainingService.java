@@ -58,17 +58,17 @@ public class TrainingService implements TrainingUseCase {
         Training training = Training.builder()
                 .member(member)
                 .workoutEa(workoutEa)
+
                 .build();
         Long trainingId = trainingPort.create(training);
 
         List<Exercise> exercises = getExercisesByPriority(member);;//TODO ENUM or 싱글톤으로 관리
         createWorkout(exercises, training);
-
         return TrainingResponse.builder()
                 .trainingId(trainingId)
                 .build();
     }
-
+    
     public List<Exercise> getExercisesById(List<Long> selects) {
         //TODO exercises 및 mapper싱글톤으로 관리
         List<Exercise> exercises = exercisePort.getAll();
@@ -90,6 +90,7 @@ public class TrainingService implements TrainingUseCase {
 
         // 현재 상태에 따라 가중치 up
         Condition condition = member.getCondition();
+
 
         Map<String, Float> weightMap = new HashMap<>();
         weightMap.put("neck",condition.getNeck());
@@ -130,6 +131,7 @@ public class TrainingService implements TrainingUseCase {
 
         return exercises;
     }
+
     private void createWorkout(List<Exercise> exercises, Training training) {
         for (int i = 0; i < workoutEa; i++) {
             Exercise exercise = exercises.get(i);
@@ -140,6 +142,7 @@ public class TrainingService implements TrainingUseCase {
             workoutPort.create(workout);//TODO 리스트로 모았다가 한번에 쿼리로 전환
         }
     }
+
     private static Comparator<Exercise> getComparator(Map<String, Float> priority) {
         Comparator<Exercise> comparator = new Comparator<>() {
             @Override

@@ -30,4 +30,5 @@ public class TrainingController {
     public TrainingResponse startTraining(@RequestBody @Valid TrainingCreate request){
         return trainingUseCase.createTraining(request);
     }
+
 }
