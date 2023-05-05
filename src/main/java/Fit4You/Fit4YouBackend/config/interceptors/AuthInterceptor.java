@@ -43,7 +43,6 @@ public class AuthInterceptor implements HandlerInterceptor {
                     .setSigningKey(appConfig.getJwtKey())
                     .build()
                     .parseClaimsJws(jws);
-            log.info("claims >>> {}",claims);
             //OK, we can trust this JWT
         } catch (JwtException e) {
             //don't trust the JWT!

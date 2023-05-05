@@ -18,11 +18,15 @@ public class Condition {
     @Column(name = "condition_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
+
     @JoinColumn(name = "member_id")
     private Member member;
 
     private LocalDateTime createdAt;
+
+    private LocalDateTime lastModifiedAt;
+
     private Float neck; //목
     private Float shoulder; //어깨
     private Float lumbar; //허리

@@ -23,14 +23,18 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MedicalHist> medicalHists= new ArrayList();
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Condition> conditions = new ArrayList<>();
+    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
+    private Condition condition;
 
     @Builder
     public Member(String email, String password){
         this.email = email;
         this.password = password;
     }
-
+    
+    /*주의! TEST용*/
+    public void setConditionOnlyForTest(Condition condition){
+        this.condition = condition;
+    }
 
 }

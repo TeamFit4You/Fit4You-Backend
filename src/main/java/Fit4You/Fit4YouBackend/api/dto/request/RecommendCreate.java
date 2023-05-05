@@ -4,21 +4,16 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor
-public class TrainingCreate {
+public class RecommendCreate {
 
     @NotBlank
     private String email;
 
-    private List<Long> selects;
-
     @Builder
-    public TrainingCreate(String email, List<Long> selects) {
+    public RecommendCreate(String email) {
         this.email = email;
-        this.selects = selects;
-
     }
 }
