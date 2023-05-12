@@ -1,5 +1,4 @@
-!/usr/bin/bash
-
+!/bin/bash
 
 PROJECT_ROOT="/home/ec2-user/app"
 JAR_FILE="$PROJECT_ROOT/spring-webapp.jar"
