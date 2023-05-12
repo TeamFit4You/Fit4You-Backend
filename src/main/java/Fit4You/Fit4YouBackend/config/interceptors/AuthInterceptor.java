@@ -24,12 +24,8 @@ public class AuthInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info(">>> prehandle");
         //@Auth가 붙어있는 경우만 인증체크
-        try {
-            HandlerMethod handlerMethod = (HandlerMethod) handler;
-            if(handlerMethod.getMethodAnnotation(Auth.class)==null){
-                return true;
-            }
-        } catch (ClassCastException exception) {
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        if(handlerMethod.getMethodAnnotation(Auth.class)==null){
             return true;
         }
 
