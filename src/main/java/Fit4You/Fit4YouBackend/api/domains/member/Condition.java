@@ -19,14 +19,21 @@ public class Condition {
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
+<<<<<<< HEAD
+=======
 
+>>>>>>> 00b6878d02ccec6a17d98a3ea189e9f8accc85dd
     @JoinColumn(name = "member_id")
     private Member member;
 
     private LocalDateTime createdAt;
+<<<<<<< HEAD
+    private LocalDateTime lastModifiedAt;
+=======
 
     private LocalDateTime lastModifiedAt;
 
+>>>>>>> 00b6878d02ccec6a17d98a3ea189e9f8accc85dd
     private Float neck; //목
     private Float shoulder; //어깨
     private Float lumbar; //허리

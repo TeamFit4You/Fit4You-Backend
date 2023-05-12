@@ -58,17 +58,28 @@ public class TrainingService implements TrainingUseCase {
         Training training = Training.builder()
                 .member(member)
                 .workoutEa(workoutEa)
+<<<<<<< HEAD
+=======
 
+>>>>>>> 00b6878d02ccec6a17d98a3ea189e9f8accc85dd
                 .build();
         Long trainingId = trainingPort.create(training);
 
         List<Exercise> exercises = getExercisesByPriority(member);;//TODO ENUM or 싱글톤으로 관리
         createWorkout(exercises, training);
+<<<<<<< HEAD
+
+=======
+>>>>>>> 00b6878d02ccec6a17d98a3ea189e9f8accc85dd
         return TrainingResponse.builder()
                 .trainingId(trainingId)
                 .build();
     }
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> 00b6878d02ccec6a17d98a3ea189e9f8accc85dd
     public List<Exercise> getExercisesById(List<Long> selects) {
         //TODO exercises 및 mapper싱글톤으로 관리
         List<Exercise> exercises = exercisePort.getAll();
@@ -91,7 +102,10 @@ public class TrainingService implements TrainingUseCase {
         // 현재 상태에 따라 가중치 up
         Condition condition = member.getCondition();
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 00b6878d02ccec6a17d98a3ea189e9f8accc85dd
         Map<String, Float> weightMap = new HashMap<>();
         weightMap.put("neck",condition.getNeck());
         weightMap.put("shoulder",condition.getShoulder());
@@ -131,7 +145,10 @@ public class TrainingService implements TrainingUseCase {
 
         return exercises;
     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 00b6878d02ccec6a17d98a3ea189e9f8accc85dd
     private void createWorkout(List<Exercise> exercises, Training training) {
         for (int i = 0; i < workoutEa; i++) {
             Exercise exercise = exercises.get(i);
@@ -142,7 +159,10 @@ public class TrainingService implements TrainingUseCase {
             workoutPort.create(workout);//TODO 리스트로 모았다가 한번에 쿼리로 전환
         }
     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 00b6878d02ccec6a17d98a3ea189e9f8accc85dd
     private static Comparator<Exercise> getComparator(Map<String, Float> priority) {
         Comparator<Exercise> comparator = new Comparator<>() {
             @Override
