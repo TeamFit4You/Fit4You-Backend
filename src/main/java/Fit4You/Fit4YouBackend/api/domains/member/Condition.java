@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name="conditions")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Condition {
