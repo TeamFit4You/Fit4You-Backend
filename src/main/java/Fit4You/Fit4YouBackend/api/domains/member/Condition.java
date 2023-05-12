@@ -26,6 +26,7 @@ public class Condition {
     private LocalDateTime lastModifiedAt;
 
 
+
     private Float neck; //목
     private Float shoulder; //어깨
     private Float lumbar; //허리
