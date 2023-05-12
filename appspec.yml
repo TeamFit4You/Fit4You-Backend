@@ -6,7 +6,11 @@ files:
     overwrite: yes
 
 hooks:
+  AfterInstall:
+    - location: scripts/stop.sh
+      timeout: 300
+      runas: ec2-user
   ApplicationStart:
-    - location: scripts/deploy.sh
+    - location: scripts/start.sh
       timeout: 300
       runas: ec2-user
