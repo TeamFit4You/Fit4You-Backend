@@ -36,13 +36,9 @@ dependencies {
 	//Websocket 의존성
 	implementation 'org.springframework.boot:spring-boot-starter-websocket:3.0.5'
 
-<<<<<<< HEAD
 	//Swagger 의존성
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
-
-
-=======
->>>>>>> 00b6878d02ccec6a17d98a3ea189e9f8accc85dd
+	
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
