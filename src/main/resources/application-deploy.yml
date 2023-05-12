@@ -5,7 +5,6 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/fit-4-you-db.cqtehij3k1gy.ap-northeast-2.rds.amazonaws.com?serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false&useSSL=false
-
     username: jjbin
     password: ${{ secrets.DB_PASSWORD }}
 
