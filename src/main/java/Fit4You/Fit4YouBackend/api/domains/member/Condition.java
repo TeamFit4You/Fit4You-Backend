@@ -19,13 +19,13 @@ public class Condition {
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
-
     @JoinColumn(name = "member_id")
     private Member member;
 
     private LocalDateTime createdAt;
-
     private LocalDateTime lastModifiedAt;
+
+
 
     private Float neck; //목
     private Float shoulder; //어깨

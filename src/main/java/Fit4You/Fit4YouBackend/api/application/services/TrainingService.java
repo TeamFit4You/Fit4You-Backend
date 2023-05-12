@@ -58,17 +58,17 @@ public class TrainingService implements TrainingUseCase {
         Training training = Training.builder()
                 .member(member)
                 .workoutEa(workoutEa)
-
                 .build();
         Long trainingId = trainingPort.create(training);
 
         List<Exercise> exercises = getExercisesByPriority(member);;//TODO ENUM or 싱글톤으로 관리
         createWorkout(exercises, training);
+
         return TrainingResponse.builder()
                 .trainingId(trainingId)
                 .build();
     }
-    
+
     public List<Exercise> getExercisesById(List<Long> selects) {
         //TODO exercises 및 mapper싱글톤으로 관리
         List<Exercise> exercises = exercisePort.getAll();

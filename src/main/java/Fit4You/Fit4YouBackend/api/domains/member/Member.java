@@ -31,7 +31,7 @@ public class Member {
         this.email = email;
         this.password = password;
     }
-    
+
     /*주의! TEST용*/
     public void setConditionOnlyForTest(Condition condition){
         this.condition = condition;

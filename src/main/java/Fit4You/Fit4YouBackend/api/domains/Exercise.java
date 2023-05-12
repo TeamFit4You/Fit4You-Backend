@@ -30,7 +30,6 @@ public class Exercise {
         this.videoLink = videoLink;
         this.setEa = setEa;
     }
-    
     /*주의! TEST용*/
     public void setIdOnlyForTest(Long id){
         this.id = id;
