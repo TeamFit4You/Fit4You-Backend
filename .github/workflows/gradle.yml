@@ -4,9 +4,10 @@
 # documentation.
 # This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
-env:
-  S3_BUCKET_NAME: be-0-name
-name: Java CI with Gradle
+
+#env:
+#  S3_BUCKET_NAME: be-0-name
+#name: Java CI with Gradle
 
 on:
 #  push:
