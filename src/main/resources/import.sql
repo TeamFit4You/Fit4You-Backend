@@ -11,3 +11,4 @@ INSERT INTO exercise (name,disease_id) VALUES ('운동3',3);
 INSERT INTO exercise (name,disease_id) VALUES ('운동4',4);
 INSERT INTO exercise (name,disease_id) VALUES ('운동5',5);
 
+

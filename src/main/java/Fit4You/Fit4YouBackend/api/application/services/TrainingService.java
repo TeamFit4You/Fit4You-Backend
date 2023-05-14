@@ -91,7 +91,6 @@ public class TrainingService implements TrainingUseCase {
         // 현재 상태에 따라 가중치 up
         Condition condition = member.getCondition();
 
-
         Map<String, Float> weightMap = new HashMap<>();
         weightMap.put("neck",condition.getNeck());
         weightMap.put("shoulder",condition.getShoulder());

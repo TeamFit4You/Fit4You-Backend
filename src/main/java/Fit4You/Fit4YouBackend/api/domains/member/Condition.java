@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Entity(name="conditions")
+
+@Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Condition {
@@ -24,9 +25,6 @@ public class Condition {
 
     private LocalDateTime createdAt;
     private LocalDateTime lastModifiedAt;
-
-
-
     private Float neck; //목
     private Float shoulder; //어깨
     private Float lumbar; //허리

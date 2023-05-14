@@ -65,7 +65,6 @@ class TrainingServiceTest {
     }
     @Test
     @DisplayName("운동추천")
-
     void recommendWorkout() {
 
         //given
