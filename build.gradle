@@ -7,7 +7,9 @@ plugins {
 group = 'Fit4You'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
-
+jar {
+	enabled = false
+}
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -19,6 +21,7 @@ repositories {
 }
 
 dependencies {
+	implementation 'mysql:mysql-connector-java:8.0.21'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -38,7 +41,6 @@ dependencies {
 
 	//Swagger 의존성
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
-
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'

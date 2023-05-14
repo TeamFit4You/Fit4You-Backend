@@ -130,6 +130,7 @@ public class TrainingService implements TrainingUseCase {
 
         return exercises;
     }
+
     private void createWorkout(List<Exercise> exercises, Training training) {
         for (int i = 0; i < workoutEa; i++) {
             Exercise exercise = exercises.get(i);
@@ -140,6 +141,7 @@ public class TrainingService implements TrainingUseCase {
             workoutPort.create(workout);//TODO 리스트로 모았다가 한번에 쿼리로 전환
         }
     }
+
     private static Comparator<Exercise> getComparator(Map<String, Float> priority) {
         Comparator<Exercise> comparator = new Comparator<>() {
             @Override

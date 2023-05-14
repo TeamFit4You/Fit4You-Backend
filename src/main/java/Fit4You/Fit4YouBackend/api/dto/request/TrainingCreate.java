@@ -4,7 +4,6 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import java.util.List;
 
 @Getter
@@ -20,5 +19,6 @@ public class TrainingCreate {
     public TrainingCreate(String email, List<Long> selects) {
         this.email = email;
         this.selects = selects;
+
     }
 }

@@ -1,0 +1,18 @@
+spring:
+  config:
+    activate:
+      on-profile: deploy
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://fit-4-you-db.cqtehij3k1gy.ap-northeast-2.rds.amazonaws.com:3306/fit4you?serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false&useSSL=false
+
+    username: jjbin
+    password: Abcd1234!#$
+
+  jpa:
+    show_sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true

@@ -54,6 +54,7 @@ public class MemberController {
                 .setExpiration(new Date(iat.getTime()+1000*60*60))//만료시간 - ms단위;1000=1초
                 .signWith(secretKey)
                 .compact();
+      
         return new SessionResponse(memberId,jws);
     }
 
@@ -62,4 +63,5 @@ public class MemberController {
 //    public void test(){
 //        log.info(">>> 인증 테스트 요청 성공");
 //    }
+
 }

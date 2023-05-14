@@ -47,6 +47,7 @@ class TrainingServiceTest {
         trainingService= new TrainingService(trainingPort,workoutPort,exercisePort,loadMemberPort);
         String[] parts = {"shoulder", "elbow", "ankle", "wrist", "lumbar", "neck"};
         exercises = new ArrayList<>();
+
         Long idx = 0L;
         for (String part : parts) {
             Exercise exercise = Exercise.builder()
@@ -59,11 +60,13 @@ class TrainingServiceTest {
                     .build();
             exercise.setIdOnlyForTest(idx++);
             exercises.add(exercise);
+
         }
     }
     @Test
     @DisplayName("운동추천")
     void recommendWorkout() {
+
         //given
         SignInRequest request = SignInRequest.builder()
                 .email("test@email.com")
@@ -101,6 +104,7 @@ class TrainingServiceTest {
     @Test
     @DisplayName("추천목록 생성:성공")
     void recommend() {
+
         //given
         SignInRequest request = SignInRequest.builder()
                 .email("test@email.com")
@@ -110,6 +114,7 @@ class TrainingServiceTest {
                 .email(request.getEmail())
                 .password(PasswordEncoder.encode(request.getPassword()))
                 .build();
+
         //condition
         Condition condition = Condition.builder()
                 .member(member)

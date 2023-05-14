@@ -35,4 +35,5 @@ public class Exercise {
     public void setIdOnlyForTest(Long id){
         this.id = id;
     }
+
 }
