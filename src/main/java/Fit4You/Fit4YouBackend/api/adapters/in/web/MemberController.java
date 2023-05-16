@@ -58,6 +58,13 @@ public class MemberController {
         return new SessionResponse(memberId,jws);
     }
 
+
+    @GetMapping("/")
+    public String defaultTemp(){
+        return "기본요청시 보여주는 임시페이지";
+    }
+    
+    
 //    @Auth
 //    @GetMapping("/members/auth/test")
 //    public void test(){
