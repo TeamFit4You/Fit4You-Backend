@@ -1,4 +1,4 @@
-package Fit4You.Fit4YouBackend.exception;
+package Fit4You.Fit4YouBackend.exception.type;
 
 public class InvalidSignInInfo extends CustomException {
 

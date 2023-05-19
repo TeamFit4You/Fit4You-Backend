@@ -1,8 +1,7 @@
 package Fit4You.Fit4YouBackend.exception;
 
 
-import Fit4You.Fit4YouBackend.exception.CustomException;
-import Fit4You.Fit4YouBackend.exception.ErrorResponse;
+import Fit4You.Fit4YouBackend.exception.type.CustomException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

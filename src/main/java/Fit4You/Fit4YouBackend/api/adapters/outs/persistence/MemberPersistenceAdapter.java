@@ -1,7 +1,7 @@
 package Fit4You.Fit4YouBackend.api.adapters.outs.persistence;
 
-import Fit4You.Fit4YouBackend.exception.EmailConflicted;
-import Fit4You.Fit4YouBackend.exception.MemberNotFound;
+import Fit4You.Fit4YouBackend.exception.type.EmailConflicted;
+import Fit4You.Fit4YouBackend.exception.type.MemberNotFound;
 import Fit4You.Fit4YouBackend.api.application.ports.outs.LoadMemberPort;
 import Fit4You.Fit4YouBackend.api.application.ports.outs.RegisterMemberPort;
 import Fit4You.Fit4YouBackend.api.domains.member.Member;

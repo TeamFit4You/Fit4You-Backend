@@ -1,7 +1,7 @@
 package Fit4You.Fit4YouBackend.config.interceptors;
 
 import Fit4You.Fit4YouBackend.config.AppConfig;
-import Fit4You.Fit4YouBackend.exception.Unauthorized;
+import Fit4You.Fit4YouBackend.exception.type.Unauthorized;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
