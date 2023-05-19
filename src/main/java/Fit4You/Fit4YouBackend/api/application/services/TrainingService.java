@@ -33,6 +33,7 @@ public class TrainingService implements TrainingUseCase {
     private final Integer workoutEa = 3;
 
     @Override
+    @Transactional
     public TrainingResponse createTraining(TrainingCreate trainingCreate) {
         Member member = loadMemberPort.loadMember(trainingCreate.getEmail());
         List<Exercise> exercises = getExercisesById(trainingCreate.getSelects());

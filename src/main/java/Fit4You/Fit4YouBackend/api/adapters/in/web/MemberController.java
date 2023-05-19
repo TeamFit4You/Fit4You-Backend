@@ -32,15 +32,17 @@ public class MemberController {
     private final AppConfig appConfig;
 
     @PostMapping("/members/sign-up")
-    @Operation(summary = "회원가입 요청", description = "회원가입")
-    @ApiResponse(responseCode = "409",description = "Conflicted")
+    @Operation(summary = "회원가입", description = "회원가입 요청시 <br>이메일은 xxx@xxx.xx 양식을 갖춰야 한다.<br>비밀번호는 영문자와 숫자로 구성된 8자리 이상이어야한다.")
+    @ApiResponse(responseCode = "200",description = "성공")
+    @ApiResponse(responseCode = "400",description = "실패 - 유효하지 않은 이메일 혹은 비밀번호 양식")
+    @ApiResponse(responseCode = "409",description = "실패 - 이미 존재하는 이메일")
     public void signUp(@RequestBody @Valid SignUpRequest request){
         memberUseCase.signUp(request);
     }
 
 
     @PostMapping("/members/sign-in")
-    @Operation(summary = "로그인", description = "로그인이요")
+    @Operation(summary = "로그인", description = "로그인 요청")
     public SessionResponse signIn(@RequestBody @Valid SignInRequest request){
 
         log.info("로그인 요청 - {}", request.getEmail());
