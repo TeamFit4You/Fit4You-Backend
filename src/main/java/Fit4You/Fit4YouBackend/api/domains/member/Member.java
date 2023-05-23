@@ -24,7 +24,7 @@ public class Member {
     private List<MedicalHist> medicalHists= new ArrayList();
 
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
-    private Condition condition;
+    private Conditions conditions;
 
     @Builder
     public Member(String email, String password){
@@ -32,7 +32,7 @@ public class Member {
         this.password = password;
     }
     /*주의! TEST용*/
-    public void setConditionOnlyForTest(Condition condition){
-        this.condition = condition;
+    public void setConditionOnlyForTest(Conditions conditions){
+        this.conditions = conditions;
     }
 }

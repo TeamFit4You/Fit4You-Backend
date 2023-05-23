@@ -6,7 +6,7 @@ import Fit4You.Fit4YouBackend.api.application.ports.outs.training.ExercisePort;
 import Fit4You.Fit4YouBackend.api.application.ports.outs.training.TrainingPort;
 import Fit4You.Fit4YouBackend.api.application.ports.outs.training.WorkoutPort;
 import Fit4You.Fit4YouBackend.api.domains.Exercise;
-import Fit4You.Fit4YouBackend.api.domains.member.Condition;
+import Fit4You.Fit4YouBackend.api.domains.member.Conditions;
 import Fit4You.Fit4YouBackend.api.domains.member.MedicalHist;
 import Fit4You.Fit4YouBackend.api.domains.member.Member;
 import Fit4You.Fit4YouBackend.api.domains.training.Training;
@@ -90,15 +90,15 @@ public class TrainingService implements TrainingUseCase {
     public List<Exercise> getExercisesByPriority(Member member) {
 
         // 현재 상태에 따라 가중치 up
-        Condition condition = member.getCondition();
+        Conditions conditions = member.getConditions();
 
         Map<String, Float> weightMap = new HashMap<>();
-        weightMap.put("neck",condition.getNeck());
-        weightMap.put("shoulder",condition.getShoulder());
-        weightMap.put("lumbar",condition.getLumbar());
-        weightMap.put("wrist",condition.getWrist());
-        weightMap.put("elbow",condition.getElbow());
-        weightMap.put("ankle",condition.getKnee());
+        weightMap.put("neck", conditions.getNeck());
+        weightMap.put("shoulder", conditions.getShoulder());
+        weightMap.put("lumbar", conditions.getLumbar());
+        weightMap.put("wrist", conditions.getWrist());
+        weightMap.put("elbow", conditions.getElbow());
+        weightMap.put("ankle", conditions.getKnee());
 
 
         // 과거병력이 있는 경우 가중치 up

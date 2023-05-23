@@ -3,7 +3,7 @@ package Fit4You.Fit4YouBackend.api.application.services;
 import Fit4You.Fit4YouBackend.api.application.ports.in.ConditionUseCase;
 import Fit4You.Fit4YouBackend.api.application.ports.outs.ConditionPort;
 import Fit4You.Fit4YouBackend.api.application.ports.outs.LoadMemberPort;
-import Fit4You.Fit4YouBackend.api.domains.member.Condition;
+import Fit4You.Fit4YouBackend.api.domains.member.Conditions;
 import Fit4You.Fit4YouBackend.api.domains.member.MedicalHist;
 import Fit4You.Fit4YouBackend.api.domains.member.Member;
 import Fit4You.Fit4YouBackend.api.dto.request.SurveyRequest;
@@ -18,7 +18,7 @@ public class ConditionService implements ConditionUseCase {
     @Override
     public void recordSurvey(SurveyRequest request) {
         Member member = loadMemberPort.loadMember(request.getEmail());
-        Condition condition = Condition.builder()
+        Conditions conditions = Conditions.builder()
                 .member(member)
                 .knee(request.getKnee())
                 .wrist(request.getWrist())
@@ -35,6 +35,6 @@ public class ConditionService implements ConditionUseCase {
                     .build();
         }
 
-        conditionPort.saveCondition(condition);
+        conditionPort.saveCondition(conditions);
     }
 }
