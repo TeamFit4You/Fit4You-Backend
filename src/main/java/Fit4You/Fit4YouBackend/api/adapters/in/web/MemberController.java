@@ -1,5 +1,7 @@
 package Fit4You.Fit4YouBackend.api.adapters.in.web;
 
+import Fit4You.Fit4YouBackend.api.application.ports.in.ConditionUseCase;
+import Fit4You.Fit4YouBackend.api.dto.request.SurveyRequest;
 import Fit4You.Fit4YouBackend.config.AppConfig;
 import Fit4You.Fit4YouBackend.config.interceptors.Auth;
 import Fit4You.Fit4YouBackend.api.application.ports.in.MemberUseCase;
@@ -29,6 +31,7 @@ import java.util.Date;
 public class MemberController {
 
     private final MemberUseCase memberUseCase;
+    private final ConditionUseCase conditionUseCase;
     private final AppConfig appConfig;
 
     @PostMapping("/members/sign-up")
@@ -58,6 +61,12 @@ public class MemberController {
                 .compact();
       
         return new SessionResponse(memberId,jws);
+    }
+
+    @PostMapping("/members/survey")
+    @Operation(summary = "설문기록", description = "설문결과 기록 요청")
+    public void survey(@RequestBody SurveyRequest request){
+        conditionUseCase.recordSurvey(request);
     }
 
 

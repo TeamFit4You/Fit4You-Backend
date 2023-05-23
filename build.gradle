@@ -25,6 +25,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+//	implementation 'org.springframework.boot:spring-boot-starter-webflux' // WebClient를 사용하기 위한 의존성 추가
 	//crypto 의존성 추가
 	implementation group: 'org.springframework.security', name: 'spring-security-crypto', version: '6.0.2'
 

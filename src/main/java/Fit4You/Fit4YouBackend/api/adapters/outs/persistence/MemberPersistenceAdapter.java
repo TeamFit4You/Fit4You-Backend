@@ -7,9 +7,12 @@ import Fit4You.Fit4YouBackend.api.application.ports.outs.RegisterMemberPort;
 import Fit4You.Fit4YouBackend.api.domains.member.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
-@Component
+@Repository
 public class MemberPersistenceAdapter implements RegisterMemberPort, LoadMemberPort {
 
     private final MemberJpaRepository memberRepository;
@@ -26,6 +29,7 @@ public class MemberPersistenceAdapter implements RegisterMemberPort, LoadMemberP
 
     @Override
     public Member loadMember(String email) {
+
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(MemberNotFound::new);
         return member;

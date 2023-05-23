@@ -1,6 +1,6 @@
 spring:
   profiles:
-    default: local
+    default: deploy
 
   config:
     import:
@@ -9,9 +9,9 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
-file:
-  upload:
-    path: C:/Users/user/desktop/
+ai:
+  server:
+    url: localhost
 springdoc:
 #  packages-to-scan: com.test.demo
   default-consumes-media-type: application/json
