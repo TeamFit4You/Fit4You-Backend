@@ -7,7 +7,7 @@ import Fit4You.Fit4YouBackend.api.application.ports.outs.training.WorkoutPort;
 import Fit4You.Fit4YouBackend.api.crypto.PasswordEncoder;
 import Fit4You.Fit4YouBackend.api.domains.Disease;
 import Fit4You.Fit4YouBackend.api.domains.Exercise;
-import Fit4You.Fit4YouBackend.api.domains.member.Condition;
+import Fit4You.Fit4YouBackend.api.domains.member.Conditions;
 import Fit4You.Fit4YouBackend.api.domains.member.Member;
 import Fit4You.Fit4YouBackend.api.dto.request.SignInRequest;
 import Fit4You.Fit4YouBackend.api.dto.request.RecommendCreate;
@@ -78,16 +78,16 @@ class TrainingServiceTest {
                 .build();
 
         //condition
-        Condition condition = Condition.builder()
+        Conditions conditions = Conditions.builder()
                 .member(member)
-                .ankle(1f)
+                .knee(1f)
                 .elbow(2f)
                 .wrist(20f)
                 .lumbar(4f)
                 .neck(5f)
                 .shoulder(6f)
                 .build();
-        member.setConditionOnlyForTest(condition);
+        member.setConditionOnlyForTest(conditions);
         //TODO hist추가
 
         given(exercisePort.getAll()).willReturn(exercises);
@@ -116,16 +116,16 @@ class TrainingServiceTest {
                 .build();
 
         //condition
-        Condition condition = Condition.builder()
+        Conditions conditions = Conditions.builder()
                 .member(member)
-                .ankle(1f)
+                .knee(1f)
                 .elbow(2f)
                 .wrist(20f)
                 .lumbar(4f)
                 .neck(5f)
                 .shoulder(6f)
                 .build();
-        member.setConditionOnlyForTest(condition);
+        member.setConditionOnlyForTest(conditions);
         //TODO hist추가
 
         //stubbing
@@ -148,10 +148,6 @@ class TrainingServiceTest {
         SignInRequest request = SignInRequest.builder()
                 .email("test@email.com")
                 .password("testPw")
-                .build();
-        Member member = Member.builder()
-                .email(request.getEmail())
-                .password(PasswordEncoder.encode(request.getPassword()))
                 .build();
 
         //stubbing

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Condition {
+public class Conditions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "condition_id")
@@ -32,7 +32,7 @@ public class Condition {
     private Float knee; //무릎
 
     @Builder
-    public Condition(Member member, Float neck, Float shoulder, Float lumbar, Float wrist, Float elbow, Float knee) {
+    public Conditions(Member member, Float neck, Float shoulder, Float lumbar, Float wrist, Float elbow, Float knee) {
         this.member = member;
         this.createdAt = LocalDateTime.now();
         this.lastModifiedAt = createdAt;
