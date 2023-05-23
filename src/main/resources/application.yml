@@ -5,6 +5,13 @@ spring:
   config:
     import:
       - optional:classpath:/secret-config.yml #실제 배포환경에서 사용할 키
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+ai:
+  server:
+    url: localhost
 springdoc:
 #  packages-to-scan: com.test.demo
   default-consumes-media-type: application/json

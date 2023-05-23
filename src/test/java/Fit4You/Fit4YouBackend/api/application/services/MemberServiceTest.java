@@ -1,6 +1,6 @@
 package Fit4You.Fit4YouBackend.api.application.services;
 
-import Fit4You.Fit4YouBackend.exception.InvalidSignInInfo;
+import Fit4You.Fit4YouBackend.exception.type.InvalidSignInInfo;
 import Fit4You.Fit4YouBackend.api.application.ports.outs.LoadMemberPort;
 import Fit4You.Fit4YouBackend.api.application.ports.outs.RegisterMemberPort;
 import Fit4You.Fit4YouBackend.api.crypto.PasswordEncoder;

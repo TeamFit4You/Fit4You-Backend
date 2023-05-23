@@ -33,6 +33,7 @@ public class TrainingService implements TrainingUseCase {
     private final Integer workoutEa = 3;
 
     @Override
+    @Transactional
     public TrainingResponse createTraining(TrainingCreate trainingCreate) {
         Member member = loadMemberPort.loadMember(trainingCreate.getEmail());
         List<Exercise> exercises = getExercisesById(trainingCreate.getSelects());
@@ -97,7 +98,7 @@ public class TrainingService implements TrainingUseCase {
         weightMap.put("lumbar",condition.getLumbar());
         weightMap.put("wrist",condition.getWrist());
         weightMap.put("elbow",condition.getElbow());
-        weightMap.put("ankle",condition.getAnkle());
+        weightMap.put("ankle",condition.getKnee());
 
 
         // 과거병력이 있는 경우 가중치 up

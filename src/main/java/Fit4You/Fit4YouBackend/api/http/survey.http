@@ -1,0 +1,17 @@
+### 설문 요청
+
+POST http://localhost:8080/members/survey
+Content-Type: application/json
+
+{
+  "email": "test@email.com",
+  "neck": 1,
+  "shoulder":1,
+  "lumbar":1,
+  "wrist":1,
+  "elbow":1,
+  "ankle":1 ,
+  "knee" : 1,
+  "hist" : ["거북목"]
+}
+

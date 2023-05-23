@@ -20,14 +20,17 @@ public class Sets {
     @JoinColumn(name = "workout_id")
     private Workout workout;
 
+    private Integer setNo;
+
     private Float accuracy;
 
     @Lob
     private String feedback;
 
     @Builder
-    public Sets(Workout workout, Float accuracy, String feedback) {
+    public Sets(Workout workout, Integer setNo, Float accuracy, String feedback) {
         this.workout = workout;
+        this.setNo = setNo;
         this.accuracy = accuracy;
         this.feedback = feedback;
     }
