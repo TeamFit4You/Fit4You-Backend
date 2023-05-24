@@ -44,4 +44,29 @@ public class Conditions {
         this.knee = knee;
     }
 
+    //가중치 변경
+    public void change(Float delta, String part) {
+        switch (part) {
+
+            case "neck":
+                this.neck += delta;
+                break;
+            case "shoulder":
+                this.shoulder += delta;
+                break;
+            case "lumbar":
+                this.lumbar += delta;
+                break;
+            case "wrist":
+                this.wrist += delta;
+                break;
+            case "elbow":
+                this.elbow += delta;
+                break;
+            case "knee":
+                this.knee += delta;
+                break;
+        }
+    }
+
 }
