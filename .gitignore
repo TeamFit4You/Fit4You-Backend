@@ -6,7 +6,7 @@ build/
 !**/src/test/**/build/
 ### Scret Key ###
 secret-config.yml
-application-deploy.yml
+!**/src/main/resources/application-deploy.yml
 
 ### STS ###
 .apt_generatedㅁ
