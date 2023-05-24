@@ -100,7 +100,6 @@ public class TrainingService implements TrainingUseCase {
         weightMap.put("elbow", conditions.getElbow());
         weightMap.put("knee", conditions.getKnee());
 
-
         // 과거병력이 있는 경우 가중치 up
         List<MedicalHist> medicalHists = member.getMedicalHists();
         Float histWeight = 1f;
