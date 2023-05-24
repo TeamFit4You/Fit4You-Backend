@@ -30,7 +30,7 @@ public class TrainingService implements TrainingUseCase {
     private final ExercisePort exercisePort;
     private final LoadMemberPort loadMemberPort;
 
-    private final Integer workoutEa = 3;
+    private static final Integer workoutEa = 3;
 
     @Override
     @Transactional
@@ -62,7 +62,7 @@ public class TrainingService implements TrainingUseCase {
                 .build();
         Long trainingId = trainingPort.create(training);
 
-        List<Exercise> exercises = getExercisesByPriority(member);;//TODO ENUM or 싱글톤으로 관리
+        List<Exercise> exercises = getExercisesByPriority(member);//TODO ENUM or 싱글톤으로 관리
         createWorkout(exercises, training);
 
         return TrainingResponse.builder()
@@ -71,7 +71,7 @@ public class TrainingService implements TrainingUseCase {
     }
 
     public List<Exercise> getExercisesById(List<Long> selects) {
-        //TODO exercises 및 mapper싱글톤으로 관리
+
         List<Exercise> exercises = exercisePort.getAll();
         HashMap<Long, Exercise> mapper = new HashMap<>();
         for (Exercise exercise : exercises) {
@@ -98,8 +98,7 @@ public class TrainingService implements TrainingUseCase {
         weightMap.put("lumbar", conditions.getLumbar());
         weightMap.put("wrist", conditions.getWrist());
         weightMap.put("elbow", conditions.getElbow());
-        weightMap.put("ankle", conditions.getKnee());
-
+        weightMap.put("knee", conditions.getKnee());
 
         // 과거병력이 있는 경우 가중치 up
         List<MedicalHist> medicalHists = member.getMedicalHists();
@@ -144,7 +143,8 @@ public class TrainingService implements TrainingUseCase {
     }
 
     private static Comparator<Exercise> getComparator(Map<String, Float> priority) {
-        Comparator<Exercise> comparator = new Comparator<>() {
+
+        return new Comparator<>() {
             @Override
             public int compare(Exercise o1, Exercise o2) {
                 float diff = priority.get(o2.getName()) - priority.get(o1.getName()); // 내림차순
@@ -153,7 +153,6 @@ public class TrainingService implements TrainingUseCase {
                 else return 1;
             }
         };
-        return comparator;
     }
 
 }

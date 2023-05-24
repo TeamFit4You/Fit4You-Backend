@@ -21,4 +21,4 @@ spring:
         format_sql: true
 ai:
   server:
-    url: 172.17.208.1
+    url: 125.240.253.199 #외부주소
