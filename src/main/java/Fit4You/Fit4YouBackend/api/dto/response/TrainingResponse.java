@@ -12,9 +12,11 @@ import java.util.List;
 public class TrainingResponse {
 
     private Long trainingId;
+    private List<Long> workouts;
 
     @Builder
-    public TrainingResponse(Long trainingId) {
+    public TrainingResponse(Long trainingId, List<Long> workouts) {
         this.trainingId = trainingId;
+        this.workouts = workouts;
     }
 }

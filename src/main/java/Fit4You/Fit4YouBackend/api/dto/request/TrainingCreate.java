@@ -1,5 +1,6 @@
 package Fit4You.Fit4YouBackend.api.dto.request;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,6 +14,7 @@ public class TrainingCreate {
     @NotBlank
     private String email;
 
+    @Schema(description = "선택한 운동들의 ID")
     private List<Long> selects;
 
     @Builder

@@ -2,7 +2,7 @@
 
 GET http://localhost:8080/trainings/recommend
 Content-Type: application/json
-authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjg0OTk5NjQ1LCJleHAiOjE2ODUwMDMyNDV9.DQGlQy5iRk-E_fyNUF7YoPvXbzrFhInczlPZqZXEhIo
+authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjg1MDM3NTU1LCJleHAiOjE2ODUwNDExNTV9.2HROY-YrugNfiqWtrRToMOgPaUGFkTcaqAsGclFWKmY
 
 {
   "email": "test@email.com"
