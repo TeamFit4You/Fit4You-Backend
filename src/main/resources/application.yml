@@ -6,9 +6,9 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
-ai:
-  server:
-    url: localhost
+#ai:
+#  server:
+#    url: localhost
 springdoc:
 #  packages-to-scan: com.test.demo
   default-consumes-media-type: application/json
