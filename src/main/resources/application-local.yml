@@ -21,4 +21,6 @@ spring:
     properties:
       hibernate:
         format_sql: true
-
+ai:
+  server:
+    url: localhost

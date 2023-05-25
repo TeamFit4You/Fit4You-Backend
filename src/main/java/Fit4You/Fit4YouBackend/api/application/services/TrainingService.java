@@ -44,10 +44,11 @@ public class TrainingService implements TrainingUseCase {
                 .build();
         Long trainingId = trainingPort.create(training);
 
-        createWorkout(exercises, training);
+
 
         return TrainingResponse.builder()
                 .trainingId(trainingId)
+                .workouts(createWorkout(exercises, training))
                 .build();
     }
 
@@ -63,10 +64,10 @@ public class TrainingService implements TrainingUseCase {
         Long trainingId = trainingPort.create(training);
 
         List<Exercise> exercises = getExercisesByPriority(member);//TODO ENUM or 싱글톤으로 관리
-        createWorkout(exercises, training);
 
         return TrainingResponse.builder()
                 .trainingId(trainingId)
+                .workouts(createWorkout(exercises, training))
                 .build();
     }
 
@@ -131,15 +132,17 @@ public class TrainingService implements TrainingUseCase {
         return exercises;
     }
 
-    private void createWorkout(List<Exercise> exercises, Training training) {
+    private List<Long> createWorkout(List<Exercise> exercises, Training training) {
+        ArrayList<Long> workouts = new ArrayList<>();
         for (int i = 0; i < workoutEa; i++) {
             Exercise exercise = exercises.get(i);
             Workout workout = Workout.builder()
                     .training(training)
                     .exercise(exercise)
                     .build();
-            workoutPort.create(workout);//TODO 리스트로 모았다가 한번에 쿼리로 전환
+            workouts.add(workoutPort.create(workout));
         }
+        return workouts;
     }
 
     private static Comparator<Exercise> getComparator(Map<String, Float> priority) {

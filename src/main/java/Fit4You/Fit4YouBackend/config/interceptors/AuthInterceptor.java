@@ -22,7 +22,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info(">>> prehandle");
+        log.info(">>> prehandle {}",request.getRequestURI());
         //@Auth가 붙어있는 경우만 인증체크
         try {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
@@ -33,8 +33,7 @@ public class AuthInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        String requestURI = request.getRequestURI();
-        log.info(">>> 인증 체크 : {}",requestURI);
+        log.info(">>> 인증 체크");
 
         String jws = request.getHeader("Authorization");//accessToken
 
@@ -60,7 +59,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        log.info(">>>작업완료");
+        log.info(">>>인증성공");
     }
 
     @Override

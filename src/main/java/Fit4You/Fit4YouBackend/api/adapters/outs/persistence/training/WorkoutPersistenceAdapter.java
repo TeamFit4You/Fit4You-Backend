@@ -13,8 +13,8 @@ public class WorkoutPersistenceAdapter implements WorkoutPort {
     private final WorkoutJpaRepository workoutJpaRepository;
 
     @Override
-    public void create(Workout workout) {
-        workoutJpaRepository.save(workout);
+    public Long create(Workout workout) {
+        return workoutJpaRepository.save(workout).getId();
     }
 
     @Override
