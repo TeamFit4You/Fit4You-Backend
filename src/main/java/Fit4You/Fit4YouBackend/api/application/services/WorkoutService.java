@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -59,14 +60,23 @@ public class WorkoutService implements WorkoutUseCase {
 
         // 응답저장
         Float acc = response.getAccuracy();
-        String feedback = response.getFeedback();
+        List<String> feedbackParts = response.getFeedbackParts();
+        if(!feedbackParts.isEmpty()){
 
+            StringBuilder sb = new StringBuilder();
+            sb.append("아래와 같은 관절이 정상 범위에서 벗어났습니다. 해당 관절들을 신경써서 동작을 수행하세요.\r\n: ");
+            for (String feedbackPart : feedbackParts) {
+                sb.append(" ");
+                sb.append(feedbackPart);
+            }
+            response.setFeedback(sb.toString());
+        }
         // DB에 결과 저장
         setsPort.save(Sets.builder()
                 .workout(workout)
                 .setNo(setNo)
                 .accuracy(acc)
-                .feedback(feedback)
+                .feedback(response.getFeedback())
                 .build());
 
         //결과 Condtion에 반영
