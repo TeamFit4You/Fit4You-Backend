@@ -1,5 +1,6 @@
 package Fit4You.Fit4YouBackend.api.domains.member;
 
+import Fit4You.Fit4YouBackend.api.dto.request.SurveyRequest;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -42,6 +43,16 @@ public class Conditions {
         this.wrist = wrist;
         this.elbow = elbow;
         this.knee = knee;
+    }
+
+    public void modify(SurveyRequest request){
+        this.neck = request.getNeck();
+        this.shoulder = request.getShoulder();
+        this.lumbar = request.getLumbar();
+        this.wrist = request.getWrist();
+        this.elbow = request.getElbow();
+        this.knee = request.getKnee();
+        this.lastModifiedAt = LocalDateTime.now();
     }
 
     //가중치 변경
