@@ -1,6 +1,6 @@
 package Fit4You.Fit4YouBackend.api.dto.response;
 
-import Fit4You.Fit4YouBackend.api.domains.training.Workout;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,12 +11,11 @@ import java.util.List;
 @NoArgsConstructor
 public class TrainingResponse {
 
-    private Long trainingId;
-    private List<Long> workouts;
+    @Schema(description = "수행할 workout의 ID들")
+    private List<Long> workoutIds;
 
     @Builder
-    public TrainingResponse(Long trainingId, List<Long> workouts) {
-        this.trainingId = trainingId;
-        this.workouts = workouts;
+    public TrainingResponse(List<Long> workoutIds) {
+        this.workoutIds = workoutIds;
     }
 }

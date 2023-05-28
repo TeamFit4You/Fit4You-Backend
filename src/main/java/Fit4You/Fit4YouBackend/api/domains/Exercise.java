@@ -22,13 +22,15 @@ public class Exercise {
     private String name;
     private String videoLink;
     private Integer setEa;
+    private String detail;
 
     @Builder
-    public Exercise(Disease disease, String name, String videoLink, Integer setEa) {
+    public Exercise(Disease disease, String name, String videoLink, Integer setEa, String detail) {
         this.disease = disease;
         this.name = name;
         this.videoLink = videoLink;
         this.setEa = setEa;
+        this.detail = detail;
     }
 
     /*주의! TEST용*/

@@ -15,18 +15,18 @@ public class SwaggerConfig {
         Info info = new Info()
                 .title("Fit-4-You API Document")
                 .version("v0.0.1")
-                .description("<h3>Fit-4-You API 명세서</h3>+" +
-                        "<br>요청 실패 응답은" +
+                .description("<h2>요청 응답 양식은 최하단 Schema 참조</h2>" +
+                        "<br>요청 실패 응답은 아래 형태(Schema-ErrorResponse)로 통일되어 있음" +
                         "<br>{" +
-                        "<br>  \"code\": \"에러코드\"," +
-                        "<br>  \"message\": \"에러메세지\"," +
-                        "<br>  \"validation\": {" +
-                        "<br>    \"에러필드1\": \"필드에러메세지1\"," +
-                        "<br>    \"에러필드2\": \"필드에러메세지2\"," +
-                        "<br>    \"에러필드3\": \"필드에러메세지3\"" +
-                        "<br>  }" +
+                        "<br>&ensp;&ensp;  \"code\" : \"에러코드\"," +
+                        "<br>&ensp;&ensp;  \"message\" : \"에러메세지\"," +
+                        "<br>&ensp;&ensp;  \"validation\" : {" +
+                        "<br>&ensp;&ensp;&ensp;&ensp;    \"에러필드1\" : \"필드에러메세지1\"," +
+                        "<br>&ensp;&ensp;&ensp;&ensp;    \"에러필드2\" : \"필드에러메세지2\"," +
+                        "<br>&ensp;&ensp;&ensp;&ensp;    \"에러필드3\" : \"필드에러메세지3\"" +
+                        "<br>&ensp;&ensp;  }" +
                         "<br>}" +
-                        "<br>형태로 통일되어 있음");
+                        "<br>");
         return new OpenAPI()
                 .components(new Components())
                 .info(info);

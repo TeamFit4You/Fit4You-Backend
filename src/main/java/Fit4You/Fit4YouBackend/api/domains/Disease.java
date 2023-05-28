@@ -18,10 +18,12 @@ public class Disease {
     private String name;
     private String relatedPart;
 
+    private String opposite;
     @Builder
-    public Disease(String name, String relatedPart) {
+    public Disease(String name, String relatedPart, String opposite) {
         this.name = name;
         this.relatedPart = relatedPart;
+        this.opposite = opposite;
     }
 
 }
