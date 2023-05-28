@@ -36,12 +36,7 @@ public class ExerciseController {
         return exerciseUseCase.getAll(request);
     }
 
-
-    @GetMapping("/exercises/video")
-    @Operation(summary = "전문가 데모 운동 영상 요청", description = "해당 운동의 전문가 영상 다운로드. <br>contentType = application/octet-stream <br>filename=demo_video.mp4")
-    @Parameter(name = "workoutId",description = "수행하려는 운동ID")
-    public ResponseEntity<Resource> downloadVideo(Long workoutId) {
-
+    
     @GetMapping("/exercises/video/{exerciseId}")
     @Operation(summary = "전문가 데모 운동 영상 요청", description = "해당 운동의 전문가 영상 다운로드. <br>contentType = application/octet-stream <br>filename=demo_video.mp4")
     @Parameter(name = "exerciseId",description = "수행할 운동의 exerciseId")
