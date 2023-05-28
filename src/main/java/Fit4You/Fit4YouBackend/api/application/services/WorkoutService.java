@@ -45,7 +45,7 @@ public class WorkoutService implements WorkoutUseCase {
 
     @Override
     @Transactional
-    public EstimationResponse estimate(MultipartFile file, Long workoutId, Integer setNo){
+    public EstimationResponse estimate(MultipartFile file, Long workoutId){
 
         // get acc & feedback
         Workout workout = workoutPort.getOne(workoutId);
@@ -71,15 +71,16 @@ public class WorkoutService implements WorkoutUseCase {
             }
             response.setFeedback(sb.toString());
         }
+
         // DB에 결과 저장
         setsPort.save(Sets.builder()
                 .workout(workout)
-                .setNo(setNo)
+                .setNo(setsPort.countByWorkoutId(workoutId)+1)
                 .accuracy(acc)
                 .feedback(response.getFeedback())
                 .build());
 
-        //결과 Condtion에 반영
+        //결과 Condtions에 반영
         Member member = workout.getTraining().getMember();
         Conditions condition = member.getConditions();
         String part = workout.getExercise().getDisease().getRelatedPart();

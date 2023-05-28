@@ -12,3 +12,7 @@ app-config: #테스트용 키
 file:
   upload:
     path: C:/Users/user/desktop/
+
+ai:
+  server:
+    url: localhost

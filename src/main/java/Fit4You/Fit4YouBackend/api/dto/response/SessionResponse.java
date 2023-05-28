@@ -1,16 +1,16 @@
 package Fit4You.Fit4YouBackend.api.dto.response;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 
 @Getter
 public class SessionResponse {
 
-    private final Long memberId;
+    @Schema(description = "인증토큰")
     private final String authorization;
 
 
-    public SessionResponse(Long memberId, String authorization) {
-        this.memberId = memberId;
+    public SessionResponse(String authorization) {
         this.authorization = authorization;
     }
 }

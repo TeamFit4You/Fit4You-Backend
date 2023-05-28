@@ -35,7 +35,10 @@ public class MemberController {
     private final AppConfig appConfig;
 
     @PostMapping("/members/sign-up")
-    @Operation(summary = "회원가입", description = "회원가입 요청시 <br>이메일은 xxx@xxx.xx 양식을 갖춰야 한다.<br>비밀번호는 영문자와 숫자로 구성된 8자리 이상이어야한다.")
+    @Operation(summary = "회원가입", description = "회원가입 요청시 양식<br>이메일 = xxx@xxx.xx<br>비밀번호 = 영문자와 숫자로 구성된 8자리 이상<br>" +
+            "==Schema 참조==<br>" +
+            "요청 - SignUpRequest<br>" +
+            "응답 - 없음<br>")
     @ApiResponse(responseCode = "200",description = "성공")
     @ApiResponse(responseCode = "400",description = "실패 - 유효하지 않은 이메일 혹은 비밀번호 양식")
     @ApiResponse(responseCode = "409",description = "실패 - 이미 존재하는 이메일")
@@ -45,7 +48,10 @@ public class MemberController {
 
 
     @PostMapping("/members/sign-in")
-    @Operation(summary = "로그인", description = "로그인 요청")
+    @Operation(summary = "로그인", description = "로그인 요청<br>" +
+            "==Schema 참조==<br>" +
+            "요청 - SignInRequest<br>" +
+            "응답 - SessionResponse<br>")
     public SessionResponse signIn(@RequestBody @Valid SignInRequest request){
 
         log.info("로그인 요청 - {}", request.getEmail());
@@ -60,17 +66,21 @@ public class MemberController {
                 .signWith(secretKey)
                 .compact();
       
-        return new SessionResponse(memberId,jws);
+        return new SessionResponse(jws);
     }
 
     @PostMapping("/members/survey")
-    @Operation(summary = "설문기록", description = "설문결과 기록 요청")
+    @Operation(summary = "설문기록", description = "설문결과 기록 요청<br>" +
+            "==Schema 참조==<br>" +
+            "요청 - SurveyRequest<br>" +
+            "응답 - 없음<br>")
     public void survey(@RequestBody SurveyRequest request){
         conditionUseCase.recordSurvey(request);
     }
 
 
     @GetMapping("/")
+    @Operation(summary = "연결 확인용 - 무시할것")
     public String defaultTemp(){
         return "기본요청시 보여주는 임시페이지";
     }

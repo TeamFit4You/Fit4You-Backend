@@ -5,6 +5,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface WorkoutUseCase {
 
-    EstimationResponse estimate(MultipartFile file, Long workoutId, Integer setNo);
+    EstimationResponse estimate(MultipartFile file, Long workoutId);
 
 }

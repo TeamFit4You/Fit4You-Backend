@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,13 +40,16 @@ class TrainingServiceTest {
     @Mock
     LoadMemberPort loadMemberPort;
 
+    PriorityService priorityService;
+
     TrainingService trainingService;
     List<Exercise> exercises;
 
     @BeforeEach
     void beforeEach() {
-        trainingService= new TrainingService(trainingPort,workoutPort,exercisePort,loadMemberPort);
-        String[] parts = {"shoulder", "elbow", "ankle", "wrist", "lumbar", "neck"};
+        priorityService = new PriorityService();
+        trainingService= new TrainingService(trainingPort,workoutPort,exercisePort,loadMemberPort,priorityService);
+        String[] parts = {"어깨", "팔꿈치", "무릎", "손목", "허리", "목"};
         exercises = new ArrayList<>();
 
         Long idx = 0L;
@@ -96,9 +100,9 @@ class TrainingServiceTest {
         List<Exercise> results = trainingService.getExercisesByPriority(member);
 
         //then
-        assertThat(results.get(0).getName()).isEqualTo("wrist운동");
-        assertThat(results.get(1).getName()).isEqualTo("shoulder운동");
-        assertThat(results.get(2).getName()).isEqualTo("neck운동");
+        assertThat(results.get(0).getName()).isEqualTo("손목운동");
+        assertThat(results.get(1).getName()).isEqualTo("어깨운동");
+        assertThat(results.get(2).getName()).isEqualTo("목운동");
     }
 
     @Test
@@ -138,8 +142,10 @@ class TrainingServiceTest {
                 .email("test@email.com")
                 .build());
 
+        List<Long> workoutIds = response.getWorkoutIds();
         //then
-        assertThat(response.getTrainingId()).isEqualTo(1L);
+        assertThat(workoutIds.size()).isEqualTo(3);
+
     }
     @Test
     @DisplayName("운동생성")
@@ -157,9 +163,9 @@ class TrainingServiceTest {
         List<Exercise> results = trainingService.getExercisesById(List.of(1L, 3L, 5L));
 
         //then
-        assertThat(results.get(0).getName()).isEqualTo("elbow운동");
-        assertThat(results.get(1).getName()).isEqualTo("wrist운동");
-        assertThat(results.get(2).getName()).isEqualTo("neck운동");
+        assertThat(results.get(0).getName()).isEqualTo("팔꿈치운동");
+        assertThat(results.get(1).getName()).isEqualTo("손목운동");
+        assertThat(results.get(2).getName()).isEqualTo("목운동");
     }
     @Test
     @DisplayName("운동목록 생성:성공")
@@ -185,7 +191,8 @@ class TrainingServiceTest {
                 .selects(List.of(1L,3L,5L))
                 .build());
 
+        List<Long> workoutIds = response.getWorkoutIds();
         //then
-        assertThat(response.getTrainingId()).isEqualTo(1L);
+        assertThat(workoutIds.size()).isEqualTo(3);
     }
 }

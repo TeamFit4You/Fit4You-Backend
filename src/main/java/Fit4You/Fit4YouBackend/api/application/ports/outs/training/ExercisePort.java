@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ExercisePort {
     List<Exercise> getAll();
+
+    Exercise getOne(Long exerciseId);
 }

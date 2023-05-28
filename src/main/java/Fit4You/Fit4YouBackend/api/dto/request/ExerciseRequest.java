@@ -1,27 +1,27 @@
 package Fit4You.Fit4YouBackend.api.dto.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor
-public class TrainingCreate {
+public class ExerciseRequest {
 
-    @NotBlank
+    @NotBlank(message = "이메일을 입력해주세요")
+    @Email(message = "이메일 형식이 맞지 않습니다")
     @Schema(description = "이메일")
     private String email;
 
-    @Schema(description = "선택한 운동들의 ID")
-    private List<Long> selects;
+    @Schema(description = "해당 부위; ex) 전체, 목, ...")
+    private String part;
 
     @Builder
-    public TrainingCreate(String email, List<Long> selects) {
+    public ExerciseRequest(String email, String part) {
         this.email = email;
-        this.selects = selects;
-
+        this.part = part;
     }
 }
