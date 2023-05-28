@@ -53,5 +53,4 @@ public class ExerciseController {
                 .body(video);
     }
 
-
 }
