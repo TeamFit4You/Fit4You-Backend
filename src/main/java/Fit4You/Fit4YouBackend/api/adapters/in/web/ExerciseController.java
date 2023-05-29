@@ -53,6 +53,7 @@ public class ExerciseController {
                 .contentType(MediaType.parseMediaType("application/octet-stream"))
                 .body(video);
     }
+
     @GetMapping("/exercises/info/{exerciseId}")
     @Operation(summary = "수행할 운동정보 요청", description = "다음과 같은 운동정보 제공<br>운동명, 운동상세정보, 관련 질환, 관련부위<br>" +
             "==Schema 참조==<br>" +

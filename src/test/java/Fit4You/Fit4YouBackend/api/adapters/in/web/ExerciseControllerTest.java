@@ -288,4 +288,5 @@ class ExerciseControllerTest {
                 .andExpect(jsonPath("$.diseaseName").value(first.getDisease().getName()))
                 .andDo(print());
     }
+
 }

@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +40,9 @@ public class ExerciseService implements ExerciseUseCase {
                 .part(disease.getRelatedPart())
                 .diseaseName(disease.getName())
                 .build();
+
     }
+
 
     @Override
     @Transactional
