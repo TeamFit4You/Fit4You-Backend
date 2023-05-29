@@ -22,6 +22,8 @@ public class Exercise {
     private String name;
     private String videoLink;
     private Integer setEa;
+
+    @Lob
     private String detail;
 
     @Builder
