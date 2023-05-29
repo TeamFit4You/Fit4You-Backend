@@ -96,6 +96,7 @@ public class TrainingService implements TrainingUseCase {
         return exercises;
     }
 
+
     private List<Long> createWorkout(List<Exercise> exercises, Training training) {
         ArrayList<Long> workouts = new ArrayList<>();
         for (int i = 0; i < workoutEa; i++) {

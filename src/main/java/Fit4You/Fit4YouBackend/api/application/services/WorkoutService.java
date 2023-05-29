@@ -3,12 +3,15 @@ package Fit4You.Fit4YouBackend.api.application.services;
 import Fit4You.Fit4YouBackend.api.application.ports.in.WorkoutUseCase;
 import Fit4You.Fit4YouBackend.api.application.ports.outs.training.SetsPort;
 import Fit4You.Fit4YouBackend.api.application.ports.outs.training.WorkoutPort;
+import Fit4You.Fit4YouBackend.api.domains.Disease;
+import Fit4You.Fit4YouBackend.api.domains.Exercise;
 import Fit4You.Fit4YouBackend.api.domains.member.Conditions;
 import Fit4You.Fit4YouBackend.api.domains.member.MedicalHist;
 import Fit4You.Fit4YouBackend.api.domains.member.Member;
 import Fit4You.Fit4YouBackend.api.domains.training.Sets;
 import Fit4You.Fit4YouBackend.api.domains.training.Workout;
 import Fit4You.Fit4YouBackend.api.dto.response.EstimationResponse;
+import Fit4You.Fit4YouBackend.api.dto.response.InfoResponse;
 import Fit4You.Fit4YouBackend.exception.type.ApiRequestFail;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,8 +43,22 @@ public class WorkoutService implements WorkoutUseCase {
     private final WorkoutPort workoutPort;
     private final SetsPort setsPort;
 
+
     @Value("${ai.server.url}")
     private String serverUrl;
+
+    @Override
+    @Transactional
+    public InfoResponse getInfo(Long workoutId) {
+        Exercise exercise = workoutPort.getOne(workoutId).getExercise();
+        Disease disease = exercise.getDisease();
+        return InfoResponse.builder()
+                .name(exercise.getName())
+                .detail(exercise.getDetail())
+                .diseaseName(disease.getName())
+                .part(disease.getRelatedPart())
+                .build();
+    }
 
     @Override
     @Transactional
