@@ -1,16 +1,16 @@
 package Fit4You.Fit4YouBackend.api.adapters.in.web;
 
-import Fit4You.Fit4YouBackend.api.dto.request.TrainingCreate;
-import Fit4You.Fit4YouBackend.config.interceptors.Auth;
 import Fit4You.Fit4YouBackend.api.application.ports.in.TrainingUseCase;
 import Fit4You.Fit4YouBackend.api.dto.request.RecommendCreate;
 import Fit4You.Fit4YouBackend.api.dto.response.TrainingResponse;
+import Fit4You.Fit4YouBackend.config.interceptors.Auth;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,9 +24,12 @@ public class TrainingController {
     @GetMapping("/trainings/recommend")
     @Operation(summary = "추천 운동 리스트 요청", description = "사용자의 현재 상태를 바탕으로 오늘의 운동 -(운동 추천3개) 제공 요청<br>" +
             "==Schema 참조==<br>" +
-            "요청 - RecommendCreate<br>" +
             "응답 - TrainingResponse<br>")
-    public TrainingResponse startRecommend(@RequestBody @Valid RecommendCreate request){
+    @Parameter(name = "email",description = "이메일 - xxx@xxx.xx 양식 필수")
+    public TrainingResponse startRecommend(@RequestParam @Valid String email){
+        RecommendCreate request = RecommendCreate.builder()
+                .email(email)
+                .build();
         return trainingUseCase.createRecommend(request);
     }
 

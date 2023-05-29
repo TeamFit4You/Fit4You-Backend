@@ -1,13 +1,12 @@
 package Fit4You.Fit4YouBackend.api.adapters.in.web;
 
 import Fit4You.Fit4YouBackend.api.application.ports.in.ConditionUseCase;
-import Fit4You.Fit4YouBackend.api.dto.request.SurveyRequest;
-import Fit4You.Fit4YouBackend.config.AppConfig;
-import Fit4You.Fit4YouBackend.config.interceptors.Auth;
 import Fit4You.Fit4YouBackend.api.application.ports.in.MemberUseCase;
 import Fit4You.Fit4YouBackend.api.dto.request.SignInRequest;
 import Fit4You.Fit4YouBackend.api.dto.request.SignUpRequest;
+import Fit4You.Fit4YouBackend.api.dto.request.SurveyRequest;
 import Fit4You.Fit4YouBackend.api.dto.response.SessionResponse;
+import Fit4You.Fit4YouBackend.config.AppConfig;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import io.swagger.v3.oas.annotations.Operation;

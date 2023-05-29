@@ -6,7 +6,6 @@ import Fit4You.Fit4YouBackend.api.application.ports.outs.training.ExercisePort;
 import Fit4You.Fit4YouBackend.api.application.ports.outs.training.WorkoutPort;
 import Fit4You.Fit4YouBackend.api.domains.Disease;
 import Fit4You.Fit4YouBackend.api.domains.Exercise;
-import Fit4You.Fit4YouBackend.api.domains.member.Member;
 import Fit4You.Fit4YouBackend.api.dto.request.ExerciseRequest;
 import Fit4You.Fit4YouBackend.api.dto.response.ExerciseResponse;
 import Fit4You.Fit4YouBackend.api.dto.response.InfoResponse;
@@ -16,9 +15,9 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
