@@ -9,11 +9,13 @@ import Fit4You.Fit4YouBackend.api.domains.Exercise;
 import Fit4You.Fit4YouBackend.api.domains.member.Member;
 import Fit4You.Fit4YouBackend.api.dto.request.ExerciseRequest;
 import Fit4You.Fit4YouBackend.api.dto.response.ExerciseResponse;
+import Fit4You.Fit4YouBackend.api.dto.response.InfoResponse;
 import Fit4You.Fit4YouBackend.config.Part;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +29,22 @@ public class ExerciseService implements ExerciseUseCase {
     private final WorkoutPort workoutPort;
     private final LoadMemberPort loadMemberPort;
     private final PriorityService priorityService;
+
     @Override
+    @Transactional
+    public InfoResponse getInfo(Long exerciseId) {
+        Exercise exercise = exercisePort.getOne(exerciseId);
+        Disease disease = exercise.getDisease();
+        return InfoResponse.builder()
+                .name(exercise.getName())
+                .detail(exercise.getDetail())
+                .part(disease.getRelatedPart())
+                .diseaseName(disease.getName())
+                .build();
+    }
+
+    @Override
+    @Transactional
     public List<ExerciseResponse> getAll(ExerciseRequest request) {
         List<Exercise> exercises = exercisePort.getAll();
 
@@ -54,6 +71,7 @@ public class ExerciseService implements ExerciseUseCase {
 
 
     @Override
+    @Transactional
     public Resource getVideoByWorkout(Long workoutId) {
 
         String videoName = workoutPort.getOne(workoutId).getExercise().getVideoLink();
@@ -68,6 +86,7 @@ public class ExerciseService implements ExerciseUseCase {
 
 
     @Override
+    @Transactional
     public Resource getVideo(Long exerciseId) {
         String videoName = exercisePort.getOne(exerciseId).getVideoLink();
 

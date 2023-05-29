@@ -3,6 +3,7 @@ package Fit4You.Fit4YouBackend.api.adapters.in.web;
 import Fit4You.Fit4YouBackend.api.application.ports.in.ExerciseUseCase;
 import Fit4You.Fit4YouBackend.api.application.ports.in.WorkoutUseCase;
 import Fit4You.Fit4YouBackend.api.dto.response.EstimationResponse;
+import Fit4You.Fit4YouBackend.api.dto.response.InfoResponse;
 import Fit4You.Fit4YouBackend.exception.type.InvalidFile;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -38,6 +39,14 @@ public class WorkoutController {
         }
 
         return workoutUseCase.estimate(file,workoutId);
+    }
+    @GetMapping("/workouts/info/{workoutId}")
+    @Operation(summary = "수행할 운동정보 요청", description = "다음과 같은 운동정보 제공<br>운동명, 운동상세정보, 관련 질환, 관련부위<br>" +
+            "==Schema 참조==<br>" +
+            "응답 - InfoResponse<br>")
+    @Parameter(name = "workoutId",description = "수행하려는 workoutId")
+    public InfoResponse exerciseInfo(@PathVariable Long workoutId) {
+        return workoutUseCase.getInfo(workoutId);
     }
 
     @GetMapping("/workouts/video/{workoutId}")

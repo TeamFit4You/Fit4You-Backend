@@ -238,4 +238,54 @@ class ExerciseControllerTest {
                 .andExpect(jsonPath("$.[0].diseaseName").value(first.getDisease().getName()))
                 .andDo(print());
     }
+
+    @Test
+    @DisplayName("id로 운동관련 정보 요청:성공")
+    void getInfo() throws Exception {
+        //given
+        List<String> names = new ArrayList<>(List.of("손목","허리디스크","목","척추관협착증"));
+        List<String> parts = new ArrayList<>(List.of("손목","허리","목","허리"));
+        List<Disease> diseases = new ArrayList<>();
+
+        for (int i = 0; i < 4; i++) {
+            diseases.add(Disease.builder()
+                    .name(names.get(i % 4))
+                    .relatedPart(parts.get(i % 4))
+                    .build());
+        }
+        diseaseJpaRepository.saveAll(diseases);
+
+        ArrayList<Exercise> exercises = new ArrayList<>();
+        for (int i = 0; i < 12; i++) {
+            exercises.add(Exercise.builder()
+                    .disease(diseases.get(i%4))
+                    .setEa(3)
+                    .detail("상세내용" + i)
+                    .videoLink("영상링크" + i)
+                    .name(names.get(i%4)+"운동"+i)
+                    .build());
+        }
+        jpaRepository.saveAll(exercises);
+
+        Member member = Member.builder()
+                .email("test@email.com")
+                .password("password1234")
+                .build();
+        memberJpaRepository.save(member);
+        Conditions conditions = Conditions.builder()
+                .member(member).lumbar(5f).wrist(1f).neck(0f).knee(0f).elbow(0f).shoulder(0f)
+                .build();
+        conditionJpaRepository.save(conditions);
+
+        Exercise first = exercises.get(2); // 손목 i%4 = 0,허리디스크 i%4 =1 ,목 i%4=2, 척추관협착증 i%4=3 으로 저장되어있음
+
+        //expected
+        mockMvc.perform(get("/exercises/info/{id}",first.getId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value(first.getName()))
+                .andExpect(jsonPath("$.part").value(first.getDisease().getRelatedPart()))
+                .andExpect(jsonPath("$.detail").value(first.getDetail()))
+                .andExpect(jsonPath("$.diseaseName").value(first.getDisease().getName()))
+                .andDo(print());
+    }
 }
