@@ -14,7 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -31,9 +31,14 @@ public class ExerciseController {
             description = "데이터 베이스에 존재하는 해당 부위 모든 운동 컬렉션 반환<br>" +
                     "부위리스트 = 전체, 목, 어깨, 허리, 손목, 팔꿈치, 무릎<br>" +
                     "==Schema 참조==<br>" +
-                    "요청 - ExerciseRequest<br>" +
                     "응답 - ExerciseResponse<br>")
-    public List<ExerciseResponse> getExercises(@RequestBody ExerciseRequest request){
+    @Parameter(name = "email",description = "이메일 - xxx@xxx.xx 양식 필수")
+    @Parameter(name = "part",description = "해당 부위; ex) 전체, 목, ...")
+    public List<ExerciseResponse> getExercises(@RequestParam String email, @RequestParam String part){
+        ExerciseRequest request = ExerciseRequest.builder()
+                .email(email)
+                .part(part)
+                .build();
         return exerciseUseCase.getAll(request);
     }
 
