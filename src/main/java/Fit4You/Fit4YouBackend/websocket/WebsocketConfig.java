@@ -1,8 +1,8 @@
 package Fit4You.Fit4YouBackend.websocket;
 
 import Fit4You.Fit4YouBackend.config.AppConfig;
-import Fit4You.Fit4YouBackend.api.application.ports.outs.training.TrainingPort;
-import Fit4You.Fit4YouBackend.api.application.ports.outs.training.WorkoutPort;
+import Fit4You.Fit4YouBackend.api.training.application.port.outs.TrainingPort;
+import Fit4You.Fit4YouBackend.api.training.application.port.outs.WorkoutPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

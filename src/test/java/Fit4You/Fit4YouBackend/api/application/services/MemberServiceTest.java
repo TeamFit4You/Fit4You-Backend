@@ -1,12 +1,13 @@
 package Fit4You.Fit4YouBackend.api.application.services;
 
+import Fit4You.Fit4YouBackend.api.member.application.service.MemberService;
 import Fit4You.Fit4YouBackend.exception.type.InvalidSignInInfo;
-import Fit4You.Fit4YouBackend.api.application.ports.outs.LoadMemberPort;
-import Fit4You.Fit4YouBackend.api.application.ports.outs.RegisterMemberPort;
+import Fit4You.Fit4YouBackend.api.member.application.port.outs.LoadMemberPort;
+import Fit4You.Fit4YouBackend.api.member.application.port.outs.RegisterMemberPort;
 import Fit4You.Fit4YouBackend.api.crypto.PasswordEncoder;
-import Fit4You.Fit4YouBackend.api.domains.member.Member;
-import Fit4You.Fit4YouBackend.api.dto.request.SignInRequest;
-import Fit4You.Fit4YouBackend.api.dto.request.SignUpRequest;
+import Fit4You.Fit4YouBackend.api.member.domains.Member;
+import Fit4You.Fit4YouBackend.api.member.dto.request.SignInRequest;
+import Fit4You.Fit4YouBackend.api.member.dto.request.SignUpRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

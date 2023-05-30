@@ -24,6 +24,8 @@ spring:
 ai:
   server:
     url: localhost
-
+video:
+  folder:
+    path: "src/main/resources/videos/{}.mp4"
 app-config: #테스트용 키
   jwt-key: "9esMvnzaD0/Ph+0u9j6WdO+vLCbkI52g8kP09eksodQ="
