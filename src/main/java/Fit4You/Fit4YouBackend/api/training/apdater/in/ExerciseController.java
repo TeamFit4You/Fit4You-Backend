@@ -10,13 +10,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
+import java.io.InputStream;
 import java.util.List;
 
 @RestController
@@ -42,6 +44,30 @@ public class ExerciseController {
         return exerciseUseCase.getAll(request);
     }
 
+    @GetMapping("/exercises/video/{exerciseId}/stream")
+    @Operation(summary = "전문가 데모 운동 영상 스트리밍 요청", description = "해당 운동의 전문가 영상 스트리밍. <br>contentType = application/octet-stream")
+    @Parameter(name = "exerciseId",description = "수행할 운동의 exerciseId")
+    public ResponseEntity<StreamingResponseBody> streamVideo(@PathVariable Long exerciseId) {
+
+        Resource video = exerciseUseCase.getVideo(exerciseId);
+
+        // 스트리밍 응답 생성
+        StreamingResponseBody responseBody = outputStream -> {
+            try (InputStream videoStream = video.getInputStream()) {
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                while ((bytesRead = videoStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+            }
+        };
+
+        // Content-Type 헤더 설정
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+
+        return new ResponseEntity<>(responseBody, headers, HttpStatus.OK);
+    }
 
     @GetMapping("/exercises/video/{exerciseId}")
     @Operation(summary = "전문가 데모 운동 영상 요청", description = "해당 운동의 전문가 영상 다운로드. <br>contentType = application/octet-stream <br>filename=demo_video.mp4")
