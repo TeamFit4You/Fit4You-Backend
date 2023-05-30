@@ -1,7 +1,9 @@
 package Fit4You.Fit4YouBackend.api.adapters.outs.persistence;
 
+import Fit4You.Fit4YouBackend.api.member.apdater.outs.jpa.MemberJpaRepository;
+import Fit4You.Fit4YouBackend.api.member.apdater.outs.MemberPersistenceAdapter;
 import Fit4You.Fit4YouBackend.exception.type.MemberNotFound;
-import Fit4You.Fit4YouBackend.api.domains.member.Member;
+import Fit4You.Fit4YouBackend.api.member.domains.Member;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

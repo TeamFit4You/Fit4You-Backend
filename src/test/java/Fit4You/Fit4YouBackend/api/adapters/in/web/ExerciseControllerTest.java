@@ -1,17 +1,17 @@
 package Fit4You.Fit4YouBackend.api.adapters.in.web;
 
-import Fit4You.Fit4YouBackend.api.adapters.outs.persistence.ConditionJpaRepository;
-import Fit4You.Fit4YouBackend.api.adapters.outs.persistence.DiseaseJpaRepository;
-import Fit4You.Fit4YouBackend.api.adapters.outs.persistence.HistJpaRepository;
-import Fit4You.Fit4YouBackend.api.adapters.outs.persistence.MemberJpaRepository;
-import Fit4You.Fit4YouBackend.api.adapters.outs.persistence.training.ExerciseJpaRepository;
-import Fit4You.Fit4YouBackend.api.adapters.outs.persistence.training.ExercisePersistenceAdapter;
-import Fit4You.Fit4YouBackend.api.domains.Disease;
-import Fit4You.Fit4YouBackend.api.domains.Exercise;
-import Fit4You.Fit4YouBackend.api.domains.member.Conditions;
-import Fit4You.Fit4YouBackend.api.domains.member.MedicalHist;
-import Fit4You.Fit4YouBackend.api.domains.member.Member;
-import Fit4You.Fit4YouBackend.api.dto.request.ExerciseRequest;
+import Fit4You.Fit4YouBackend.api.member.apdater.outs.jpa.ConditionJpaRepository;
+import Fit4You.Fit4YouBackend.api.training.apdater.outs.jpa.DiseaseJpaRepository;
+import Fit4You.Fit4YouBackend.api.member.apdater.outs.jpa.HistJpaRepository;
+import Fit4You.Fit4YouBackend.api.member.apdater.outs.jpa.MemberJpaRepository;
+import Fit4You.Fit4YouBackend.api.training.apdater.outs.jpa.ExerciseJpaRepository;
+import Fit4You.Fit4YouBackend.api.training.apdater.outs.ExercisePersistenceAdapter;
+import Fit4You.Fit4YouBackend.api.training.domains.Disease;
+import Fit4You.Fit4YouBackend.api.training.domains.Exercise;
+import Fit4You.Fit4YouBackend.api.member.domains.Conditions;
+import Fit4You.Fit4YouBackend.api.member.domains.MedicalHist;
+import Fit4You.Fit4YouBackend.api.member.domains.Member;
+import Fit4You.Fit4YouBackend.api.training.dto.request.ExerciseRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -96,16 +95,10 @@ class ExerciseControllerTest {
         Exercise first = exercises.get(1); // 손목 i%4 = 0,허리디스크 i%4 =1 ,목 i%4=2, 척추관협착증 i%4=3 으로 저장되어있음
 
 
-        String json = objectMapper.writeValueAsString(
-                ExerciseRequest.builder()
-                        .email(member.getEmail())
-                        .part("전체")
-                        .build());
+
 
         //expected
-        mockMvc.perform(get("/exercises")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(json))
+        mockMvc.perform(get("/exercises?email={email}&part={part}",member.getEmail(),"전체"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0].part").value(first.getDisease().getRelatedPart()))
                 .andExpect(jsonPath("$.[0].detail").value(first.getDetail()))
@@ -159,17 +152,8 @@ class ExerciseControllerTest {
         histJpaRepository.save(hist);
         Exercise first = exercises.get(3); // 손목 i%4 = 0,허리디스크 i%4 =1 ,목 i%4=2, 척추관협착증 i%4=3 으로 저장되어있음
 
-
-        String json = objectMapper.writeValueAsString(
-                ExerciseRequest.builder()
-                        .email(member.getEmail())
-                        .part("전체")
-                        .build());
-
         //expected
-        mockMvc.perform(get("/exercises")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(json))
+        mockMvc.perform(get("/exercises?email={email}&part={part}",member.getEmail(),"전체"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0].part").value(first.getDisease().getRelatedPart()))
                 .andExpect(jsonPath("$.[0].detail").value(first.getDetail()))
@@ -225,9 +209,7 @@ class ExerciseControllerTest {
                         .build());
 
         //expected
-        mockMvc.perform(get("/exercises")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(json))
+        mockMvc.perform(get("/exercises?email={email}&part={part}",member.getEmail(),"목"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0].part").value(first.getDisease().getRelatedPart()))
                 .andExpect(jsonPath("$.[0].detail").value(first.getDetail()))
