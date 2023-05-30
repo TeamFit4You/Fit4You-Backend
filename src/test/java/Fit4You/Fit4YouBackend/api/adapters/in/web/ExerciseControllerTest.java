@@ -1,16 +1,16 @@
 package Fit4You.Fit4YouBackend.api.adapters.in.web;
 
 import Fit4You.Fit4YouBackend.api.member.apdater.outs.jpa.ConditionJpaRepository;
-import Fit4You.Fit4YouBackend.api.training.apdater.outs.jpa.DiseaseJpaRepository;
 import Fit4You.Fit4YouBackend.api.member.apdater.outs.jpa.HistJpaRepository;
 import Fit4You.Fit4YouBackend.api.member.apdater.outs.jpa.MemberJpaRepository;
-import Fit4You.Fit4YouBackend.api.training.apdater.outs.jpa.ExerciseJpaRepository;
-import Fit4You.Fit4YouBackend.api.training.apdater.outs.ExercisePersistenceAdapter;
-import Fit4You.Fit4YouBackend.api.training.domains.Disease;
-import Fit4You.Fit4YouBackend.api.training.domains.Exercise;
 import Fit4You.Fit4YouBackend.api.member.domains.Conditions;
 import Fit4You.Fit4YouBackend.api.member.domains.MedicalHist;
 import Fit4You.Fit4YouBackend.api.member.domains.Member;
+import Fit4You.Fit4YouBackend.api.training.apdater.outs.ExercisePersistenceAdapter;
+import Fit4You.Fit4YouBackend.api.training.apdater.outs.jpa.DiseaseJpaRepository;
+import Fit4You.Fit4YouBackend.api.training.apdater.outs.jpa.ExerciseJpaRepository;
+import Fit4You.Fit4YouBackend.api.training.domains.Disease;
+import Fit4You.Fit4YouBackend.api.training.domains.Exercise;
 import Fit4You.Fit4YouBackend.api.training.dto.request.ExerciseRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;

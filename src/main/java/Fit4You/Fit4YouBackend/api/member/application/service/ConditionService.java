@@ -2,18 +2,20 @@ package Fit4You.Fit4YouBackend.api.member.application.service;
 
 import Fit4You.Fit4YouBackend.api.member.application.port.in.ConditionUseCase;
 import Fit4You.Fit4YouBackend.api.member.application.port.outs.ConditionPort;
-import Fit4You.Fit4YouBackend.api.training.application.port.outs.DiseasePort;
 import Fit4You.Fit4YouBackend.api.member.application.port.outs.HistPort;
 import Fit4You.Fit4YouBackend.api.member.application.port.outs.LoadMemberPort;
 import Fit4You.Fit4YouBackend.api.member.domains.Conditions;
 import Fit4You.Fit4YouBackend.api.member.domains.MedicalHist;
 import Fit4You.Fit4YouBackend.api.member.domains.Member;
 import Fit4You.Fit4YouBackend.api.member.dto.request.SurveyRequest;
+import Fit4You.Fit4YouBackend.api.training.application.port.outs.DiseasePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service

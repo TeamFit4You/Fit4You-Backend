@@ -1,7 +1,7 @@
 package Fit4You.Fit4YouBackend.api.training.application.service;
 
-import Fit4You.Fit4YouBackend.api.training.application.port.in.ExerciseUseCase;
 import Fit4You.Fit4YouBackend.api.member.application.port.outs.LoadMemberPort;
+import Fit4You.Fit4YouBackend.api.training.application.port.in.ExerciseUseCase;
 import Fit4You.Fit4YouBackend.api.training.application.port.outs.ExercisePort;
 import Fit4You.Fit4YouBackend.api.training.application.port.outs.WorkoutPort;
 import Fit4You.Fit4YouBackend.api.training.domains.Disease;
