@@ -11,10 +11,14 @@ import io.swagger.v3.oas.annotations.Parameters;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
+
+import java.io.InputStream;
 
 @RestController
 @RequiredArgsConstructor
@@ -48,6 +52,32 @@ public class WorkoutController {
     @Parameter(name = "workoutId",description = "수행하려는 workoutId")
     public InfoResponse exerciseInfo(@PathVariable Long workoutId) {
         return workoutUseCase.getInfo(workoutId);
+    }
+
+
+    @GetMapping("/workouts/video/{workoutId}/stream")
+    @Operation(summary = "전문가 데모 운동 영상 스트리밍 요청", description = "해당 운동의 전문가 영상 다운로드. <br>contentType = application/octet-stream <br>filename=demo_video.mp4")
+    @Parameter(name = "workoutId",description = "수행하려는 workoutId")
+    public ResponseEntity<StreamingResponseBody> streamVideoByWorkout(@PathVariable Long workoutId) {
+
+        Resource video = exerciseUseCase.getVideoByWorkout(workoutId);
+
+        // 스트리밍 응답 생성
+        StreamingResponseBody responseBody = outputStream -> {
+            try (InputStream videoStream = video.getInputStream()) {
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                while ((bytesRead = videoStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+            }
+        };
+
+        // Content-Type 헤더 설정
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+
+        return new ResponseEntity<>(responseBody, headers, HttpStatus.OK);
     }
 
     @GetMapping("/workouts/video/{workoutId}")
