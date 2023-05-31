@@ -12,6 +12,7 @@ import Fit4You.Fit4YouBackend.api.training.domains.Sets;
 import Fit4You.Fit4YouBackend.api.training.domains.Workout;
 import Fit4You.Fit4YouBackend.api.training.dto.response.EstimationResponse;
 import Fit4You.Fit4YouBackend.api.training.dto.response.InfoResponse;
+import Fit4You.Fit4YouBackend.api.training.dto.response.ResultAllResponse;
 import Fit4You.Fit4YouBackend.api.training.dto.response.ResultResponse;
 import Fit4You.Fit4YouBackend.exception.type.ApiRequestFail;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -40,6 +41,7 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Transactional(readOnly = true)
 public class WorkoutService implements WorkoutUseCase {
 
     private final WorkoutPort workoutPort;
@@ -50,7 +52,6 @@ public class WorkoutService implements WorkoutUseCase {
     private String serverUrl;
 
     @Override
-    @Transactional
     public InfoResponse getInfo(Long workoutId) {
         Exercise exercise = workoutPort.getOne(workoutId).getExercise();
         Disease disease = exercise.getDisease();
@@ -77,6 +78,27 @@ public class WorkoutService implements WorkoutUseCase {
                     .build());
         }
         return results;
+    }
+
+    @Override
+    public ResultAllResponse getResultsByOne(Long workoutId) {
+        Workout workout = workoutPort.getOne(workoutId);
+        List<Sets> setsList = setsPort.getByWorkout(workout);
+        setsList.sort((e1,e2)->e1.getSetNo()-e2.getSetNo());
+        List<ResultResponse> results= new ArrayList<>();
+        for (Sets sets : setsList) {
+
+            results.add(ResultResponse.builder()
+                    .accuracy(sets.getAccuracy())
+                    .feedback(sets.getFeedback())
+                    .count(sets.getSetNo())
+                    .build());
+        }
+        return ResultAllResponse.builder()
+                .response1(results.get(0))
+                .response2(results.get(1))
+                .response3(results.get(2))
+                .build();
     }
 
     @Override

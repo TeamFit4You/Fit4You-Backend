@@ -4,6 +4,7 @@ import Fit4You.Fit4YouBackend.api.training.application.port.in.ExerciseUseCase;
 import Fit4You.Fit4YouBackend.api.training.application.port.in.WorkoutUseCase;
 import Fit4You.Fit4YouBackend.api.training.dto.response.EstimationResponse;
 import Fit4You.Fit4YouBackend.api.training.dto.response.InfoResponse;
+import Fit4You.Fit4YouBackend.api.training.dto.response.ResultAllResponse;
 import Fit4You.Fit4YouBackend.api.training.dto.response.ResultResponse;
 import Fit4You.Fit4YouBackend.exception.type.InvalidFile;
 import io.swagger.v3.oas.annotations.Operation;
@@ -45,6 +46,19 @@ public class WorkoutController {
         }
 
         return workoutUseCase.estimate(file,workoutId);
+    }
+
+    @GetMapping(value = "/workouts/estimation/{workoutId}/one")
+    @Operation(summary = "하나로 합쳐진 정확도 평가 결과 요청", description = "운동 수행 영상의 정확도 평가 결과 요청<br>" +
+            "==Schema 참조==<br>" +
+            "응답 - EstimationResponse<br>")
+    @Parameters({
+            @Parameter(name="workoutId",description = "해당 운동의 workout ID",required = true),
+    })
+    public ResultAllResponse getEstimationResultAll(@PathVariable Long workoutId) {
+        // 파일이 비어있는지 확인
+
+        return workoutUseCase.getResultsByOne(workoutId);
     }
 
     @GetMapping(value = "/workouts/estimation/{workoutId}")
