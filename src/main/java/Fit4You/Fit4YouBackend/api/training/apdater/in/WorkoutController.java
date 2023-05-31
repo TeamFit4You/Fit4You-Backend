@@ -49,6 +49,7 @@ public class WorkoutController {
         return workoutUseCase.estimate(file,workoutId);
     }
 
+
     @GetMapping(value = "/workouts/estimation/{workoutId}/one")
     @Operation(summary = "하나로 합쳐진 정확도 평가 결과 요청", description = "운동 수행 영상의 정확도 평가 결과 요청<br>" +
             "==Schema 참조==<br>" +

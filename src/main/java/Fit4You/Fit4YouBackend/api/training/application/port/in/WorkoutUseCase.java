@@ -15,6 +15,6 @@ public interface WorkoutUseCase {
     InfoResponse getInfo(Long workoutId);
 
     List<ResultResponse> getResults(Long workoutId);
-
     ResultAllResponse getResultsByOne(Long workoutId);
+
 }
