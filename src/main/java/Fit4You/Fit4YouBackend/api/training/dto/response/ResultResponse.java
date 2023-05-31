@@ -11,18 +11,18 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class EstimationResponse {
+public class ResultResponse {
 
     @Schema(description = "정확도")
     private Float accuracy;
     @Schema(description = "피드백")
     private String feedback = "";
-    @Schema(description = "피드백 부위 - 정확하지 못했던 부위들")
-    private List<String> feedbackParts;
+    @Schema(description = "수행 횟수 번호 ex)3번 중 count 째")
+    private Integer count;
     @Builder
-    public EstimationResponse(Float accuracy, List<String> feedbackParts, String feedback) {
+    public ResultResponse(Float accuracy, String feedback, Integer count) {
         this.accuracy = accuracy;
-        this.feedbackParts = feedbackParts;
         this.feedback = feedback;
+        this.count = count;
     }
 }
