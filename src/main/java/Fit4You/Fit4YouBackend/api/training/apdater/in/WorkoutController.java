@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 import java.io.InputStream;
 import java.util.List;
 
+
 @RestController
 @RequiredArgsConstructor
 public class WorkoutController {
