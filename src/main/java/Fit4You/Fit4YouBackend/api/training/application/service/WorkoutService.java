@@ -12,6 +12,7 @@ import Fit4You.Fit4YouBackend.api.training.domains.Sets;
 import Fit4You.Fit4YouBackend.api.training.domains.Workout;
 import Fit4You.Fit4YouBackend.api.training.dto.response.EstimationResponse;
 import Fit4You.Fit4YouBackend.api.training.dto.response.InfoResponse;
+import Fit4You.Fit4YouBackend.api.training.dto.response.ResultResponse;
 import Fit4You.Fit4YouBackend.exception.type.ApiRequestFail;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,6 +33,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -61,6 +63,23 @@ public class WorkoutService implements WorkoutUseCase {
     }
 
     @Override
+    public List<ResultResponse> getResults(Long workoutId) {
+        Workout workout = workoutPort.getOne(workoutId);
+        List<Sets> setsList = setsPort.getByWorkout(workout);
+        setsList.sort((e1,e2)->e1.getSetNo()-e2.getSetNo());
+        List<ResultResponse> results= new ArrayList<>();
+        for (Sets sets : setsList) {
+
+            results.add(ResultResponse.builder()
+                    .accuracy(sets.getAccuracy())
+                    .feedback(sets.getFeedback())
+                    .count(sets.getSetNo())
+                    .build());
+        }
+        return results;
+    }
+
+    @Override
     @Transactional
     public EstimationResponse estimate(MultipartFile file, Long workoutId){
 
@@ -81,10 +100,10 @@ public class WorkoutService implements WorkoutUseCase {
         if(!feedbackParts.isEmpty()){
 
             StringBuilder sb = new StringBuilder();
-            sb.append("아래와 같은 관절이 정상 범위에서 벗어났습니다. 해당 관절들을 신경써서 동작을 수행하세요.\r\n: ");
+            sb.append("아래와 같은 관절이 정상 범위에서 벗어났습니다. 해당 관절들을 신경써서 동작을 수행하세요.\n: ");
             for (String feedbackPart : feedbackParts) {
-                sb.append(" ");
                 sb.append(feedbackPart);
+                sb.append(" ");
             }
             response.setFeedback(sb.toString());
         }

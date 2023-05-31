@@ -12,7 +12,9 @@ app-config: #테스트용 키
 file:
   upload:
     path: C:/Users/user/desktop/
-
+video:
+  folder:
+    path: "src/main/resources/videos/{}.mp4"
 ai:
   server:
     url: localhost

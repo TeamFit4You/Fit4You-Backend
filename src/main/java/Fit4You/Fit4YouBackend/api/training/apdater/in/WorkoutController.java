@@ -4,6 +4,7 @@ import Fit4You.Fit4YouBackend.api.training.application.port.in.ExerciseUseCase;
 import Fit4You.Fit4YouBackend.api.training.application.port.in.WorkoutUseCase;
 import Fit4You.Fit4YouBackend.api.training.dto.response.EstimationResponse;
 import Fit4You.Fit4YouBackend.api.training.dto.response.InfoResponse;
+import Fit4You.Fit4YouBackend.api.training.dto.response.ResultResponse;
 import Fit4You.Fit4YouBackend.exception.type.InvalidFile;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -19,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import java.io.InputStream;
+import java.util.List;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -43,6 +46,19 @@ public class WorkoutController {
         }
 
         return workoutUseCase.estimate(file,workoutId);
+    }
+
+    @GetMapping(value = "/workouts/estimation/{workoutId}")
+    @Operation(summary = "정확도 평가 결과 요청", description = "운동 수행 영상의 정확도 평가 결과 요청<br>" +
+            "==Schema 참조==<br>" +
+            "응답 - EstimationResponse<br>")
+    @Parameters({
+            @Parameter(name="workoutId",description = "해당 운동의 workout ID",required = true),
+    })
+    public List<ResultResponse> getEstimationResult(@PathVariable Long workoutId) {
+        // 파일이 비어있는지 확인
+
+        return workoutUseCase.getResults(workoutId);
     }
 
     @GetMapping("/workouts/info/{workoutId}")
